@@ -32,62 +32,67 @@ end
 
 # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-# イニシャライズ
-since_id = 0
-max_id = 0
-counter = 0
-csv_name = "tweet_20140306.csv"
+# キーワードに一致するtweetの取得
+def getTweetAll(cli, search_word, tweet_num)
 
-# CSVファイル作成 / オープン
-CSV.open(csv_name, "wb") do |csv|
+	# イニシャライズ
+	since_id = 0
+	max_id = 0
+	counter = 0
+	csv_name = "tweet_20140309.csv"
 
-	while counter == 0  do
-		begin
+	# CSVファイル作成 / オープン
+	CSV.open(csv_name, "wb") do |csv|
 
-	    client.search(ARGV[0], :count => 1, :result_type => "recent", :max_id => max_id).take(3).each do |tweet|
+		while counter == 0  do
+			begin
 
-			  # puts tweet.attrs
+		    cli.search(search_word, :count => 1, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
 
-			  puts tweet.id
-			  puts tweet.attrs[:user][:screen_name]
-			  puts tweet.attrs[:user][:name]
-			  puts tweet.text
-			  puts tweet.created_at
-			  puts "https://twitter.com/" + tweet.attrs[:user][:screen_name]
-			  puts "=============================================="
+				  # puts tweet.attrs
+				  puts tweet.id
+				  puts tweet.attrs[:user][:screen_name]
+				  puts tweet.attrs[:user][:name]
+				  puts tweet.text
+				  puts tweet.created_at
+				  puts "https://twitter.com/" + tweet.attrs[:user][:screen_name]
+				  puts "=============================================="
 
-			  csv << [
-			  	tweet.id, 
-			  	tweet.attrs[:user][:screen_name],
-			  	tweet.attrs[:user][:name],
-			  	tweet.attrs[:user][:followers_count], 
-			  	tweet.text, 
-			  	tweet.created_at,
-			  	"https://twitter.com/" + tweet.attrs[:user][:screen_name]
-				]
+				  csv << [
+				  	tweet.id, 
+				  	tweet.attrs[:user][:screen_name],
+				  	tweet.attrs[:user][:name],
+				  	tweet.attrs[:user][:followers_count], 
+				  	tweet.text, 
+				  	tweet.created_at,
+				  	"https://twitter.com/" + tweet.attrs[:user][:screen_name]
+					]
 
-			  # 要改修 (GMTで換算するように変更予定)
-			  if tweet.created_at.to_s.include?("2015-03-05 03") 
-			  	puts "収集ここまで"
-			  	counter = 1
-			  end
+				  # 要改修 (GMTで換算するように変更予定)
+				  if tweet.created_at.to_s.include?("2015-03-05 03") 
+				  	puts "収集ここまで"
+				  	counter = 1
+				  end
 
-			  max_id = tweet.id
+				  max_id = tweet.id
+				end
+
+		  # 検索ワードで Tweet を取得できなかった場合の例外処理
+		  rescue Twitter::Error::ClientError
+		  	puts 'rejected. retry.'
+		    # 60秒待機し、リトライ
+		    sleep(60)
+		    retry
 			end
 
-	  # 検索ワードで Tweet を取得できなかった場合の例外処理
-	  rescue Twitter::Error::ClientError
-	  	puts 'rejected. retry.'
-	    # 60秒待機し、リトライ
-	    sleep(60)
-	    retry
+			# 60秒待機
+				puts '(sleep ...)'
+				sleep 4
+			
 		end
-
-		# 60秒待機
-			puts '(sleep ...)'
-			sleep 4
-		
-	end
+	end	
 end
+
+getTweetAll(client , ARGV[0], 2)
 
 p ' - - - func (get_extracted_tweet_all) end - - - '
