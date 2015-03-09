@@ -4,9 +4,9 @@ include Clockwork
 # 動作
 handler do |job|
   case job
-    when "kokoro.job"
+    when "10.job"
       puts " - 10 - "
-    when "pyon.job"
+    when "2.job"
       puts " - 2 - "
       # puts `ruby -v` # shellによるコマンド呼び出し
     when "local.job"
@@ -15,8 +15,8 @@ handler do |job|
 end
 
 #スケジューリング
-every(10.seconds, 'kokoro.job', :thread => true)
-every(2.seconds, 'pyon.job', :thread => true)
+every(10.seconds, '10.job', :thread => true)
+every(2.seconds, '2.job', :thread => true)
 
 # every(1.day, 'utc.job', :at => '10:38', :tz => 'UTC')
 every(1.day, 'local.job', :at => '10:45', :thread => true) # ローカルタイムゾーンで実行
