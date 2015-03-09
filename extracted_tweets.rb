@@ -38,7 +38,7 @@ class ExtractedTweets
 
 	# キーワードに一致するtweetの取得
 	# def getTweetAll(search_word, tweet_num)
-	def getTweetAll(search_word, tweet_num, file_name_num)
+	def getTweetAll(search_word, tweet_num, tag)
 
 
 		# イニシャライズ
@@ -47,8 +47,8 @@ class ExtractedTweets
 		counter = 0
 		csv_path = "./data/"
 		# csv_name = csv_path + "tweet_20140309.csv"
-		csv_name = csv_path + "tweet_" + file_name_num.to_s + "_20140309.csv"
-		puts "cursor : " + file_name_num.to_s
+		csv_name = csv_path + "tweet_" + tag + "_20140309.csv"
+		puts "cursor : " + tag
 
 		cli = getClient()
 

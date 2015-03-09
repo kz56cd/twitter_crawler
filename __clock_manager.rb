@@ -3,7 +3,7 @@ require './local_config'
 require 'clockwork'
 include Clockwork
 
-class ClockManager02
+class ClockManager
 
   @key = ""
   @extractedTweets

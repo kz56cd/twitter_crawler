@@ -1,31 +1,32 @@
-# require './clock_manager'
+require './clock_manager'
 
 class LocalConfig
 
-  @key_list = ""
-
   def initConf
-    # clockManager = ClockManager.new()
     
     # =========================================================================== #
-    # 検索キーワードを指定して実行
-    # => 複数キーワードの場合は半角スペースを入れること
-    # => 
+    #
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # 【検索キーワードを指定して実行】
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    #
+    #   - 1番目のパラメータには「検索キーワード」、
+    #     2番目のパラメータは「タグ名（ファイル名に使用）を指定してください。 （* タグ名はユニークにしてください）
+    #     
+    #       - 例): ClockManager02.new("大学入試" , "student").setClock()
+    #       => 「大学入試」をキーワードに抽出し、
+    #          「student」という文字列がファイル名に含まれたcsvファイルを作成 / 格納する
+    #
+    #
+    #   - 複数の検索キーワードを指定する場合は半角スペースを入れること。
+    #
+    #         - 例): ClockManager02.new("大阪 たこ焼き" , "food").setClock()
+    #
 
-    # extractedTweets.getTweetAll("スープ春雨", 2)
-    # clockManager.setClock("回線焼きそば")
-
-    # clockManager.setClock("光接続")
-    # clockManager.setClock("もんじゃ焼き")
-    # clockManager.setClock("するめ")
-    @key_list = ["めだか" , "掃除機" , "春分の日　振替"]
+    ClockManager.new("チーズの薫製" , "student").setClock()
+    ClockManager.new("ホタルイカ" , "food").setClock()
 
     # =========================================================================== #
 
   end
-
-  def getKeyword
-    return @key_list
-end
-
 end
