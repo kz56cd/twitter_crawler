@@ -77,20 +77,33 @@ class ExtractedTweets
 		# csv_name = csv_path + "tweet_20140309.csv"
 
 		path     = checkDir(csv_path)
+		
+
+
+# 作業中 ````````````````````
+
+		# 既存のファイルに追記すべきかチェック
+		checkShouldAddCSVfile(path, tag)
+
+
+# / 作業中 ````````````````````
+
+
 		csv_name = path + "tweet_" + tag + "_" + today + "_" + @collect_type + ".csv"
 		puts "tag              : " + tag
 		puts "name             : " + csv_name + "\n - - - - - - - - - - - - - - - - - - - - - - - - "
 
 
 		# 通信させない際（テスト時など）はコメントアウト ------------------------------
-		# sleep 9999
+		sleep 9999
 		# ------------------------------------------------------------------------
 
 
 		cli = getClient()
 
 		# CSVファイル作成 / オープン
-		CSV.open(csv_name, "wb") do |csv|
+		# CSV.open(csv_name, "wb") do |csv|
+		CSV.open(csv_name, "a") do |csv|
 			puts 'csv open...'
 
 			# while @counter == 0  do
@@ -249,6 +262,43 @@ class ExtractedTweets
 			end
 		end
 		return 0 
+	end
+
+
+	#
+	# 既存ファイルに追記すべきかチェックする
+	# return  追記すべきファイルパス (ファイル名含む)
+	#
+	def checkShouldAddCSVfile(path , tag)
+		puts "checkShouldAddCSVfile start"
+
+		ta = path + "tweet_" + tag + "_" # grep対象のファイルパス (途中まで)
+		# ta = "./data/tweet_"
+
+		# （保存ディレクトリ内にある）該当タグのファイル名を全て取得
+		Dir::glob( path + "*" ).each { |fname|
+     if FileTest.directory?(fname) 
+     	# ディレクトリの場合
+      #  -> 現状は無視
+      else
+      	# パスの一部が含まれている場合
+        if fname.to_s.include?(ta) 
+					# puts fname
+
+        	# 不要な文字列を除去する
+        	fname.sub!(ta, "").sub!(".csv", "")
+					puts fname	# ->  20150311_midnight などかえる
+
+					#
+					# TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					#
+					# - noon, midnightの表記をやめる
+					#
+
+        end
+      end
+  	}
+
 	end
 
 end

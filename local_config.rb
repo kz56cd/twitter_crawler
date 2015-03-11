@@ -73,9 +73,9 @@ class LocalConfig
     #              "./test/hoge/fuga/").setClock()
 
     ClockManager.new("インターステラー　tars", 
-                 "inter", 
+                 "turtles", 
                  ["11:10", "20:50"], 
-                 "./test/hoge/fuga/").setClock()
+                 "./data/").setClock()
 
 
 
