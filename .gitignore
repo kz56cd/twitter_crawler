@@ -1,2 +1,4 @@
 # 生成したcsvファイル郡は無視
 /data/
+/data/__old/
+/data/log/
