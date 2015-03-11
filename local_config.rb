@@ -67,10 +67,15 @@ class LocalConfig
     #              ["10:50", "20:50"], 
     #              "./data/").setClock()
 
-    ClockManager.new("タートルズ エイプリル", 
-                 "turtles", 
+    # ClockManager.new("タートルズ", 
+    #              "turtles", 
+    #              ["11:10", "20:50"], 
+    #              "./test/hoge/fuga/").setClock()
+
+    ClockManager.new("インターステラー　tars", 
+                 "inter", 
                  ["11:10", "20:50"], 
-                 "./data/").setClock()
+                 "./test/hoge/fuga/").setClock()
 
 
 

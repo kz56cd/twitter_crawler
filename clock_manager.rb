@@ -23,7 +23,7 @@ class ClockManager
     handler do |job|
       case job
         when "extracted.job"
-          @extractedTweets.getTweetAll(@key, 50, @tag, @csv_path) # ツイート収集開始
+          @extractedTweets.getTweetAll(@key, 3, @tag, @csv_path) # ツイート収集開始
       end
     end
 

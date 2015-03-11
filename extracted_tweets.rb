@@ -13,6 +13,7 @@ class ExtractedTweets
 	@since_collect_scope_time   # 収集範囲 (スタート)
 	@till_collect_scope_time    # 収集範囲 (エンド)
 	@counter              		= 0
+	@stop_search_flg          = false
 	@collect_type         		= ""
 
 	HARF_DAY_TIME_FORMAT      = 43200
@@ -60,7 +61,6 @@ class ExtractedTweets
 	#
 	def getTweetAll(search_word, tweet_num, tag, csv_path)
 		@start_event_time = Time.now
-		# @start_event_date = Time.strptime(@start_event_time.to_s, DATE_FORMAT) 
 		@start_event_date = Date.today
 		puts " - - - - - - - - - - - - - - - - - - - - - - - - \nSTART_EVENT_TIME : " + @start_event_time.to_s
 		
@@ -75,13 +75,15 @@ class ExtractedTweets
 
 		# csv_path = "./data/"
 		# csv_name = csv_path + "tweet_20140309.csv"
-		csv_name = csv_path + "tweet_" + tag + "_" + today + "_" + @collect_type + ".csv"
+
+		path     = checkDir(csv_path)
+		csv_name = path + "tweet_" + tag + "_" + today + "_" + @collect_type + ".csv"
 		puts "tag              : " + tag
 		puts "name             : " + csv_name + "\n - - - - - - - - - - - - - - - - - - - - - - - - "
 
 
-		# 通信させない際（テスト時等）はコメントアウト ------------------------------
-		sleep 9999
+		# 通信させない際（テスト時など）はコメントアウト ------------------------------
+		# sleep 9999
 		# ------------------------------------------------------------------------
 
 
@@ -91,16 +93,22 @@ class ExtractedTweets
 		CSV.open(csv_name, "wb") do |csv|
 			puts 'csv open...'
 
-			while @counter == 0  do
+			# while @counter == 0  do
+			while (!@stop_search_flg) do
 				begin
+					puts "検索開始"
+			    # cli.search(search_word, :count => 1, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
+			    cli.search(search_word, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
 
-			    cli.search(search_word, :count => 1, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
+			    	# puts tweet.attrs.to_a
 
-					  # puts tweet.attrs
+			    	hasImage = checkHasImages(tweet.attrs) # 画像の有無をチェック (int)
+
 					  puts tweet.id.to_s
 					  puts tweet.attrs[:user][:screen_name]
 					  puts tweet.attrs[:user][:name]
 					  puts tweet.text
+					  puts "image : " + hasImage.to_s
 					  puts tweet.created_at
 					  puts "https://twitter.com/" + tweet.attrs[:user][:screen_name]
 					  puts "=============================================="
@@ -118,6 +126,7 @@ class ExtractedTweets
 						  	tweet.attrs[:user][:name],
 						  	tweet.attrs[:user][:followers_count], 
 						  	tweet.text, 
+						  	hasImage, 
 						  	tweet.created_at,
 						  	"https://twitter.com/" + tweet.attrs[:user][:screen_name]
 							]
@@ -148,7 +157,8 @@ class ExtractedTweets
 			puts "\n||||||||||||||||||| func (get_extracted_tweet_all) end |||||||||||||||||||"
 		end	
 
-		@counter = 0 # カウンタを戻す
+		# @counter = 0 # カウンタを戻す
+		@stop_search_flg = false
 	end
 
 
@@ -156,27 +166,6 @@ class ExtractedTweets
 	# 日付の比較
 	#
 	def checkForTimeExceeding(target_time)
-
-		# since_time_str = ""
-		# till_time_str  = ""
-		# since_time = Time.new()
-		# till_time  = Time.new()
-
-		# if @collect_type == COLLECT_TYPE_NOON
-		# 	# 当日00:00 ~ 当日12:00までのツイートを対象にする
-		# 	since_time_str = @start_event_time.to_s + "00:00:00"
-		# 	till_time_str  = @start_event_time.to_s + "12:00:00"
-		# else
-		# 	# 前日12:00 ~ 当日00:00までのツイートを対象にする
-		# 	since_time_str = (@start_event_time - 1).to_s + "12:00:00"
-		# 	till_time_str  = @start_event_time.to_s       + "00:00:00" 
-		# end
-		# puts "::::::::::ツイート収集範囲::::::::::" + since_time_str + " ~ " + till_time_str + "::::::::::"
-
-		# Timeへ変換	
-		# since_time = Time.strptime(since_time_str, TIME_DIFF_FORMAT)
-		# till_time  = Time.strptime(till_time_str, TIME_DIFF_FORMAT)
-
 		# 判定
 		if target_time > @till_collect_scope_time
 			puts "[ check ++++ 除外 (未来のツイート) ]"
@@ -187,18 +176,17 @@ class ExtractedTweets
 			return false
 		else
 			puts "[ check ++++ 除外 (過去のツイート、処理を停止します) ]"
-			@counter = 1
+			# @counter = 1
+			@stop_search_flg = true
 			return true
 		end
 	end
+
 
 	#
 	# 収集タイプ（昼 / 夜の収集か）の取得
 	#
 	def getCollectType()
-
-		# start_event_Date  = Time.strptime(@start_event_time.to_s, DATE_FORMAT) 
-
 		# イベント開始日（00時）のTimeインスタンスを生成
 		midnight_time_str = @start_event_date.to_s + " 00:00:00" 
 		midnight_time     = Time.strptime(midnight_time_str, TIME_DIFF_FORMAT) # Timeへ変換
@@ -235,6 +223,32 @@ class ExtractedTweets
 		@since_collect_scope_time = Time.strptime(since_time_str, TIME_DIFF_FORMAT)
 		@till_collect_scope_time  = Time.strptime(till_time_str, TIME_DIFF_FORMAT)
 		puts "ツイート収集範囲 : " + @since_collect_scope_time.to_s + " ~ " + @till_collect_scope_time.to_s
+	end
+
+	
+	#
+	# 保存先のPathチェック
+	#
+	def checkDir(path)
+		FileUtils.mkdir_p(path) unless FileTest.exist?(path) 		# ディレクトリが存在していなければ作成
+		return path
+	end
+
+
+	#
+	# つぶやき内に画像が存在するかチェック
+	#
+	def checkHasImages(h)
+		
+		if h[:entities].has_key?(:media)
+			# 更に、画像のURL(2つ)が存在しているかチェック
+			if h[:entities][:media][0][:media_url_https].to_s.length != 0 || h[:entities][:media][0][:media_url].to_s.length != 0
+			# if h[:entities][:media][0][:media_url_https].to_s.length != 0 && h[:entities][:media][0][:media_url].to_s.length != 0
+				# puts "media_url_https : " + h[:entities][:media][0][:media_url_https].to_s
+				return 1
+			end
+		end
+		return 0 
 	end
 
 end
