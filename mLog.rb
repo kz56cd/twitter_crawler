@@ -9,8 +9,8 @@ class MLog
 
   @l
 
-  def initialize(date_str)
-    @l = Logger.new("./data/log/log_" + date_str + ".log")
+  def initialize(date_str, path)
+    @l = Logger.new(checkDir(path + "log/") + "log_" + date_str + ".log")
 
       # 
       # 例 : log_20150401.log
@@ -36,6 +36,11 @@ class MLog
       puts ""
       @l.info("")  
     end  
+  end
+
+  def checkDir(path)
+    FileUtils.mkdir_p(path) unless FileTest.exist?(path)    # ディレクトリが存在していなければ作成
+    return path
   end
 
 end

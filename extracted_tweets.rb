@@ -7,6 +7,7 @@ require './mLog'
 
 class ExtractedTweets	
 
+	@l                          # mod Loggerインスタンス
 	@start_event_time     		  # 収集開始時の時刻
 	@start_event_date     		  # 収集開始日
 	@since_collect_scope_time   # 収集範囲 (スタート)
@@ -14,7 +15,7 @@ class ExtractedTweets
 	@counter              		= 0
 	@stop_search_flg          = false
 	@collect_type         		= ""
-	@l
+	
 
 	HARF_DAY_TIME_FORMAT      = 43200
 	COLLECT_TYPE_NOON         = "noon"
@@ -68,7 +69,7 @@ class ExtractedTweets
 		@start_event_date = Date.today
 		today 				    = @start_event_date.to_s.delete("-")
 		# ロガーインスタンス生成
-		@l = MLog.new(today) 
+		@l = MLog.new(today, csv_path) 
 		@l.brs(5)
 		@l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||")
 		@l.br()
@@ -79,22 +80,13 @@ class ExtractedTweets
 		since_id = 0
 		max_id   = 0
 		@counter = 0
-
-		
+		csv_name = ""
+	
 		@collect_type = getCollectType()
 		setCollectScopeTime() # つぶやき収集範囲の設定
 
-		# csv_path = "./data/"
-		# csv_name = csv_path + "tweet_20140309.csv"
-
 		path     = checkDir(csv_path)
-		
-
-
-# 作業中 ````````````````````
 	
-		csv_name = ""
-
 		# 既存のCSVファイルに追記すべきかチェック
 		will_add_file = checkShouldAddCSVfile(path, tag)
 		if will_add_file.length == 0 
@@ -108,9 +100,6 @@ class ExtractedTweets
 			# テスト用！！！ (終わったら削除)
 			# createNewCSVfile(path, tag) # 新規作成
 		end
-
-# / 作業中 ````````````````````
-
 
 		# csv_name = path + "tweet_" + tag + "_" + today + "_" + @collect_type + ".csv"
 		@l.br()
