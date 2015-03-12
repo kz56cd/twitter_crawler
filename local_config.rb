@@ -30,33 +30,6 @@ class LocalConfig
     #         - 例): "大阪 たこ焼き 有名"  など
     #
 
-    # ClockManager.new("渋谷 カフェ 隠れ家" , "cafe").setClock()
-    # ClockManager.new("ホタルイカ" , "seafood").setClock()
-
-    # ClockManager.new("流行 ファッション 東京", 
-    #                  "fashion", 
-    #                  ["15:00", "20:00"]).setClock()
-
-    # ClockManager.new("動物園 パンダ", 
-    #                  "zoo", 
-    #                  ["15:05", "20:05"]).setClock()
-    
-    # ClockManager.new("#rubykaigi", 
-    #                  "ruby", 
-    #                  ["15:10", "20:10"]).setClock()
-
-
-
-
-
-    # ClockManager.new("電話 NTT 光", 
-    #              "tel", 
-    #              ["18:40", "20:40"], 
-    #              "./data/").setClock()
-
-
-
-
     # ClockManager.new("包丁 研ぎ方", 
     #              "knife", 
     #              ["10:45", "20:50"], 
@@ -70,14 +43,22 @@ class LocalConfig
     # ClockManager.new("タートルズ", 
     #              "turtles", 
     #              ["11:10", "20:50"], 
-    #              "./test/hoge/fuga/").setClock()
+    #              "./data/").setClock()
 
-    ClockManager.new("インターステラー　tars", 
-                 "turtles", 
-                 ["11:10", "20:50"], 
+    # ClockManager.new("インターステラー　tars", 
+    #              "inter", 
+    #              ["11:10", "20:50"], 
+    #              "./data/").setClock()
+
+    ClockManager.new("ねこあつめ　レア", 
+                 "cat", 
+                 ["14:45", "20:50"], 
                  "./data/").setClock()
 
-
+    # ClockManager.new("ニセコ　外人", 
+    #              "niseko", 
+    #              ["14:40", "20:50"], 
+    #              "./data/").setClock()
 
     # =========================================================================== #
 

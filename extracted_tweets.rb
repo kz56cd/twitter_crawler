@@ -3,10 +3,9 @@
 require 'active_support/time_with_zone'
 require 'twitter'
 require 'csv'
+require './mLog'
 
 class ExtractedTweets	
-
-	puts "||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||\n"
 
 	@start_event_time     		  # 収集開始時の時刻
 	@start_event_date     		  # 収集開始日
@@ -15,26 +14,28 @@ class ExtractedTweets
 	@counter              		= 0
 	@stop_search_flg          = false
 	@collect_type         		= ""
+	@l
 
 	HARF_DAY_TIME_FORMAT      = 43200
 	COLLECT_TYPE_NOON         = "noon"
 	COLLECT_TYPE_MIDNIGHT 	  = "midnight"
 	TIME_DIFF_FORMAT      	  = "%Y-%m-%d %H:%M:%S"
 	DATE_FORMAT           		= "%Y-%m-%d"
+	DATE_FILENAME_FORMAT      = "%Y%m%d"
 	
 	# +++++++++++++++++++++++++++++ twitter APP KEYS +++++++++++++++++++++++++++++ 
 
 	# 01
-	YOUR_CONSUMER_KEY       = "qeCCQxCEnZcnSkS75zbj9MA18"
-	YOUR_CONSUMER_SECRET    = "JYldeGC5R4cy3cEDzruXHVR0bJ97Qbjyc51n3OR1sUUTwb1n7q"
-	YOUR_ACCESS_TOKEN       = "3060999120-Fhvnr9ownWbSOhSJ0iOFPGpm3k5PPiFA3KpCSR0"
-	YOUR_ACCESS_SECRET      = "VMy3HEJrncS6wm7dWx5DhInNBWP70IHbtGZHeEwBnfSWf"
+	# YOUR_CONSUMER_KEY       = "qeCCQxCEnZcnSkS75zbj9MA18"
+	# YOUR_CONSUMER_SECRET    = "JYldeGC5R4cy3cEDzruXHVR0bJ97Qbjyc51n3OR1sUUTwb1n7q"
+	# YOUR_ACCESS_TOKEN       = "3060999120-Fhvnr9ownWbSOhSJ0iOFPGpm3k5PPiFA3KpCSR0"
+	# YOUR_ACCESS_SECRET      = "VMy3HEJrncS6wm7dWx5DhInNBWP70IHbtGZHeEwBnfSWf"
 
 	# 02
-	# YOUR_CONSUMER_KEY       = "yIX9UZ1Tl4UmUbM79BlMDsASx"
-	# YOUR_CONSUMER_SECRET    = "xz2zFj6aqJZULloi582hft7IcO9mBumnpljbezAmdCVLEwibJQ"
-	# YOUR_ACCESS_TOKEN       = "3060999120-Cr7kW5p9tlt8DoClEyzjRsurv8hCD0jEjeRmLH2"
-	# YOUR_ACCESS_SECRET      = "ljzmkDUe6ZuAa5Hock2mZfkrV0bR6ziBsF9LiIAPRq3qw"
+	YOUR_CONSUMER_KEY       = "yIX9UZ1Tl4UmUbM79BlMDsASx"
+	YOUR_CONSUMER_SECRET    = "xz2zFj6aqJZULloi582hft7IcO9mBumnpljbezAmdCVLEwibJQ"
+	YOUR_ACCESS_TOKEN       = "3060999120-Cr7kW5p9tlt8DoClEyzjRsurv8hCD0jEjeRmLH2"
+	YOUR_ACCESS_SECRET      = "ljzmkDUe6ZuAa5Hock2mZfkrV0bR6ziBsF9LiIAPRq3qw"
 
 	# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
@@ -59,17 +60,25 @@ class ExtractedTweets
 	#
 	#  キーワードに一致するtweetの取得
 	#
-	def getTweetAll(search_word, tweet_num, tag, csv_path)
+	def getTweetAll(search_word, tweet_num, sleep_time, tag, csv_path)
+
+
+
 		@start_event_time = Time.now
 		@start_event_date = Date.today
-		puts " - - - - - - - - - - - - - - - - - - - - - - - - \nSTART_EVENT_TIME : " + @start_event_time.to_s
-		
+		today 				    = @start_event_date.to_s.delete("-")
+		# ロガーインスタンス生成
+		@l = MLog.new(today) 
+		@l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||\n")
+		@l.mputs(" - - - - - - - - - - - - - - - - - - - - - - - - \nSTART_EVENT_TIME : " + @start_event_time.to_s)
+
+
 		# イニシャライズ
 		since_id = 0
 		max_id   = 0
 		@counter = 0
 
-		today 				= Date.today.to_s.delete("-")
+		
 		@collect_type = getCollectType()
 		setCollectScopeTime() # つぶやき収集範囲の設定
 
@@ -81,25 +90,31 @@ class ExtractedTweets
 
 
 # 作業中 ````````````````````
+	
+		csv_name = ""
 
-		# 既存のファイルに追記すべきかチェック
+		# 既存のCSVファイルに追記すべきかチェック
 		will_add_file = checkShouldAddCSVfile(path, tag)
 		if will_add_file.length == 0 
-
+			csv_name = createNewCSVfile(path, tag) # 新規作成
 		else
-			puts "\n" + will_add_file + "に書き込みます...\n"
+			@l.mputs("\n" + will_add_file + "に書き込みます...\n")
+			csv_name = will_add_file
+
+			# テスト用！！！ (終わったら削除)
+			# createNewCSVfile(path, tag) # 新規作成
 		end
 
 # / 作業中 ````````````````````
 
 
-		csv_name = path + "tweet_" + tag + "_" + today + "_" + @collect_type + ".csv"
-		puts "tag              : " + tag
-		puts "name             : " + csv_name + "\n - - - - - - - - - - - - - - - - - - - - - - - - "
+		# csv_name = path + "tweet_" + tag + "_" + today + "_" + @collect_type + ".csv"
+		@l.mputs("\ntag              : " + tag)
+		@l.mputs("name             : " + csv_name + "\n - - - - - - - - - - - - - - - - - - - - - - - - ")
 
 
 		# 通信させない際（テスト時など）はコメントアウト ------------------------------
-		sleep 9999
+		# sleep 9999
 		# ------------------------------------------------------------------------
 
 
@@ -107,13 +122,13 @@ class ExtractedTweets
 
 		# CSVファイル作成 / オープン
 		# CSV.open(csv_name, "wb") do |csv|
-		CSV.open(csv_name, "a") do |csv|
-			puts 'csv open...'
+		CSV.open(csv_name, "ab") do |csv|
+			@l.mputs('csv open...')
 
 			# while @counter == 0  do
 			while (!@stop_search_flg) do
 				begin
-					puts "検索開始"
+					@l.mputs("検索開始")
 			    # cli.search(search_word, :count => 1, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
 			    cli.search(search_word, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
 
@@ -121,14 +136,14 @@ class ExtractedTweets
 
 			    	hasImage = checkHasImages(tweet.attrs) # 画像の有無をチェック (int)
 
-					  puts tweet.id.to_s
-					  puts tweet.attrs[:user][:screen_name]
-					  puts tweet.attrs[:user][:name]
-					  puts tweet.text
-					  puts "image : " + hasImage.to_s
-					  puts tweet.created_at
-					  puts "https://twitter.com/" + tweet.attrs[:user][:screen_name]
-					  puts "=============================================="
+					  @l.mputs(tweet.id.to_s)
+					  @l.mputs(tweet.attrs[:user][:screen_name])
+					  @l.mputs(tweet.attrs[:user][:name])
+					  @l.mputs(tweet.text)
+					  @l.mputs("image : " + hasImage.to_s)
+					  @l.mputs(tweet.created_at)
+					  @l.mputs("https://twitter.com/" + tweet.attrs[:user][:screen_name])
+					  @l.mputs("==============================================")
 
 					  # ================ 作業中 ================
 
@@ -158,20 +173,20 @@ class ExtractedTweets
 			  rescue Twitter::Error::ClientError
 			  	puts 'rejected. retry.'
 			    # 60秒待機し、リトライ
-			    sleep(60)
+			    sleep(sleep_time)
 			    retry
 				end
 
 				# 待機時間を設定
-				puts '(sleep ...)'
-				sleep 30
+				@l.mputs('(sleep ...)')
+				sleep(sleep_time)
 			
 				# 確認用
-				# puts "end (not sleep)"
+				# @l.mputs("end (not sleep)")
 				# counter = 1
 			end
 
-			puts "\n||||||||||||||||||| func (get_extracted_tweet_all) end |||||||||||||||||||"
+			@l.mputs("\n||||||||||||||||||| func (get_extracted_tweet_all) end |||||||||||||||||||")
 		end	
 
 		# @counter = 0 # カウンタを戻す
@@ -185,14 +200,14 @@ class ExtractedTweets
 	def checkForTimeExceeding(target_time)
 		# 判定
 		if target_time > @till_collect_scope_time
-			puts "[ check ++++ 除外 (未来のツイート) ]"
-			# puts "check ++++ 未来のツイート"
+			@l.mputs("[ check ++++ 除外 (未来のツイート) ]")
 			return true
+			# return false # [テスト用] 未来のツイートも追加する
 		elsif target_time > @since_collect_scope_time && target_time < @till_collect_scope_time
-			puts "[ check ++++ 該当 ]"
+			@l.mputs("[ check ++++ 該当 ]")
 			return false
 		else
-			puts "[ check ++++ 除外 (過去のツイート、処理を停止します) ]"
+			@l.mputs("[ check ++++ 除外 (過去のツイート、処理を停止します) ]")
 			# @counter = 1
 			@stop_search_flg = true
 			return true
@@ -210,7 +225,7 @@ class ExtractedTweets
 
 		# 差分取得 / 判定
 		diff = (@start_event_time - midnight_time).to_i
-		# puts diff
+		# @l.mputs(diff)
 		if diff < HARF_DAY_TIME_FORMAT # 昼をまたがっていない場合 
 			return COLLECT_TYPE_MIDNIGHT
 		else
@@ -239,7 +254,7 @@ class ExtractedTweets
 
 		@since_collect_scope_time = Time.strptime(since_time_str, TIME_DIFF_FORMAT)
 		@till_collect_scope_time  = Time.strptime(till_time_str, TIME_DIFF_FORMAT)
-		puts "ツイート収集範囲 : " + @since_collect_scope_time.to_s + " ~ " + @till_collect_scope_time.to_s
+		@l.mputs("ツイート収集範囲 : " + @since_collect_scope_time.to_s + " ~ " + @till_collect_scope_time.to_s)
 	end
 
 	
@@ -261,7 +276,7 @@ class ExtractedTweets
 			# 更に、画像のURL(2つ)が存在しているかチェック
 			if h[:entities][:media][0][:media_url_https].to_s.length != 0 || h[:entities][:media][0][:media_url].to_s.length != 0
 			# if h[:entities][:media][0][:media_url_https].to_s.length != 0 && h[:entities][:media][0][:media_url].to_s.length != 0
-				# puts "media_url_https : " + h[:entities][:media][0][:media_url_https].to_s
+				# @l.mputs("media_url_https : " + h[:entities][:media][0][:media_url_https].to_s)
 				return 1
 			end
 		end
@@ -274,7 +289,7 @@ class ExtractedTweets
 	# return  追記すべきファイルパス (ファイル名含む)
 	#
 	def checkShouldAddCSVfile(path , tag)
-		puts "checkShouldAddCSVfile start"
+		@l.mputs("checkShouldAddCSVfile start\n")
 
 		will_add_file = ""
 
@@ -296,11 +311,16 @@ class ExtractedTweets
 					
 					# ツイート収集の日付範囲をチェック
 					if name_dates.length != 0 && name_dates[0].to_i < name_dates[1].to_i
-						puts name_dates
+						# @l.mputs(name_dates)
 
 						# イベント開始日時を適切な形( 例: 20150301 )に変換
-						start_event_date_num = @start_event_date.strftime("%Y%m%d").to_i 
-						puts "@start_event_date : " + start_event_date_num.to_s  
+						start_event_date_num = @start_event_date.strftime(DATE_FILENAME_FORMAT).to_i 
+						
+						# 収集タイプが夜中の場合
+						if @collect_type == COLLECT_TYPE_MIDNIGHT
+							# （収集対象が昨日のものになるため）日付を一日分ずらす
+							start_event_date_num = start_event_date_num - 1
+						end
 
 						#
 						# 現在日時と比較する
@@ -308,14 +328,14 @@ class ExtractedTweets
 
 						# 「ファイル名の日時の範囲内」である場合 
 						if name_dates[0].to_i <= start_event_date_num && start_event_date_num <= name_dates[1].to_i 
-							# puts "追加すべきファイル : " + fname
+							# @l.mputs("追加すべきファイル : " + fname)
 							will_add_file = fname
 							break # 一件該当すればOK ( = 最新のファイルしか該当しない想定)
 						else
-							puts "範囲外            : " + fname
+							@l.mputs("範囲外            : " + fname)
 						end
 					else
-						puts "無効なファイルです : " + fname
+						@l.mputs("無効なファイルです : " + fname)
 					end
         end
       end
@@ -328,20 +348,54 @@ class ExtractedTweets
 	# 新しいCSVファイルを作成
 	# return  新規作成したファイルパス (ファイル名含む)
 	#
-	def createNewCSVfile()
-		puts "\n" + "新しいファイルを作成します...\n"
+	def createNewCSVfile(path, tag)
+		@l.mputs(" + + + + + + + + + + + + + + + + + + ")
+		@l.mputs("新しいファイルを作成します...\n")
 
-		#
+		fname = ""
+
+		# --------------------------------------------
 		# ファイル名見本
 		#	tweet_turtles_20150909_20150322.csv
 		#
 		# 「turtles」がタグ、
-		#  「_20150909_20150322」が収集範囲となる
-		#
+		#  「_20150909_20150322」が収集範囲となる (* 収集範囲は14日間)
+		# --------------------------------------------
 
+		# 01 : ---------------------------------------
+		# 収集を始める日付 （必ず「月曜日」とする）の用意
 
+		day_of_the_week = @start_event_date.wday
+		@l.mputs("今日の曜日 : " + day_of_the_week.to_s)
+		
+		# （属している週の）月曜までの差分を算出
+		day_diff = @start_event_date.wday - 1 # 1は月曜  (参考 : wdays = ["日", "月", "火", "水", "木", "金", "土"])
+		@l.mputs("day_diff : " + day_diff.to_s)
+		# 月曜の日付を算出
+		start_date 	   = @start_event_date - day_diff.day
+		start_date_str = start_date.strftime(DATE_FILENAME_FORMAT)
+		@l.mputs("収集範囲(スタート) : " + start_date_str)
 
+		# 02 : ---------------------------------------
+		# 収集を終える日付 （必ず「日曜日」とする）の用意
+		end_date = start_date + (14 - 1).day
+		end_date_str = end_date.strftime(DATE_FILENAME_FORMAT)
+		@l.mputs("収集範囲(エンド)   : " + end_date_str + "\n ")
 
+		# 確認 ( = 日曜日になっているか)
+		if end_date.wday == 0
+
+			# 03 : ---------------------------------------
+			# ファイル名の作成
+
+			fname = path + "tweet_" + tag + "_" + start_date_str + "_" + end_date_str + ".csv"
+			@l.mputs("作成 : " + fname)
+			@l.mputs(" + + + + + + + + + + + + + + + + + + \n")
+		else
+			@l.mputs("ファイル作成エラー")
+		end
+
+		return fname
 	end
 
 end
