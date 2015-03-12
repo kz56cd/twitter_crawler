@@ -179,14 +179,14 @@ class ExtractedTweets
 	def checkForTimeExceeding(target_time)
 		# 判定
 		if target_time > @till_collect_scope_time
-			@l.mputs("[ check ++++ 除外 (未来のツイート) ]")
+			@l.mputs("[ check ++++ 除外 (収集範囲より未来のツイート) ]")
 			return true
 			# return false # [テスト用] 未来のツイートも追加する
 		elsif target_time > @since_collect_scope_time && target_time < @till_collect_scope_time
 			@l.mputs("[ check ++++ 該当 ]")
 			return false
 		else
-			@l.mputs("[ check ++++ 除外 (過去のツイート、処理を停止します) ]")
+			@l.mputs("[ check ++++ 除外 (収集範囲より過去のツイート - 処理を停止します) ]")
 			# @counter = 1
 			@stop_search_flg = true
 			return true
