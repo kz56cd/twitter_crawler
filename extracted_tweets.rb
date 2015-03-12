@@ -25,16 +25,16 @@ class ExtractedTweets
 	# +++++++++++++++++++++++++++++ twitter APP KEYS +++++++++++++++++++++++++++++ 
 
 	# 01
-	# YOUR_CONSUMER_KEY       = "qeCCQxCEnZcnSkS75zbj9MA18"
-	# YOUR_CONSUMER_SECRET    = "JYldeGC5R4cy3cEDzruXHVR0bJ97Qbjyc51n3OR1sUUTwb1n7q"
-	# YOUR_ACCESS_TOKEN       = "3060999120-Fhvnr9ownWbSOhSJ0iOFPGpm3k5PPiFA3KpCSR0"
-	# YOUR_ACCESS_SECRET      = "VMy3HEJrncS6wm7dWx5DhInNBWP70IHbtGZHeEwBnfSWf"
+	YOUR_CONSUMER_KEY       = "qeCCQxCEnZcnSkS75zbj9MA18"
+	YOUR_CONSUMER_SECRET    = "JYldeGC5R4cy3cEDzruXHVR0bJ97Qbjyc51n3OR1sUUTwb1n7q"
+	YOUR_ACCESS_TOKEN       = "3060999120-Fhvnr9ownWbSOhSJ0iOFPGpm3k5PPiFA3KpCSR0"
+	YOUR_ACCESS_SECRET      = "VMy3HEJrncS6wm7dWx5DhInNBWP70IHbtGZHeEwBnfSWf"
 
 	# 02
-	YOUR_CONSUMER_KEY       = "yIX9UZ1Tl4UmUbM79BlMDsASx"
-	YOUR_CONSUMER_SECRET    = "xz2zFj6aqJZULloi582hft7IcO9mBumnpljbezAmdCVLEwibJQ"
-	YOUR_ACCESS_TOKEN       = "3060999120-Cr7kW5p9tlt8DoClEyzjRsurv8hCD0jEjeRmLH2"
-	YOUR_ACCESS_SECRET      = "ljzmkDUe6ZuAa5Hock2mZfkrV0bR6ziBsF9LiIAPRq3qw"
+	# YOUR_CONSUMER_KEY       = "yIX9UZ1Tl4UmUbM79BlMDsASx"
+	# YOUR_CONSUMER_SECRET    = "xz2zFj6aqJZULloi582hft7IcO9mBumnpljbezAmdCVLEwibJQ"
+	# YOUR_ACCESS_TOKEN       = "3060999120-Cr7kW5p9tlt8DoClEyzjRsurv8hCD0jEjeRmLH2"
+	# YOUR_ACCESS_SECRET      = "ljzmkDUe6ZuAa5Hock2mZfkrV0bR6ziBsF9LiIAPRq3qw"
 
 	# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
@@ -83,8 +83,12 @@ class ExtractedTweets
 # 作業中 ````````````````````
 
 		# 既存のファイルに追記すべきかチェック
-		checkShouldAddCSVfile(path, tag)
+		will_add_file = checkShouldAddCSVfile(path, tag)
+		if will_add_file.length == 0 
 
+		else
+			puts "\n" + will_add_file + "に書き込みます...\n"
+		end
 
 # / 作業中 ````````````````````
 
@@ -272,32 +276,71 @@ class ExtractedTweets
 	def checkShouldAddCSVfile(path , tag)
 		puts "checkShouldAddCSVfile start"
 
-		ta = path + "tweet_" + tag + "_" # grep対象のファイルパス (途中まで)
+		will_add_file = ""
+
+		# grep対象のファイルパスを用意 (途中までのもの)
+		ta = path + "tweet_" + tag + "_" 
 		# ta = "./data/tweet_"
 
 		# （保存ディレクトリ内にある）該当タグのファイル名を全て取得
-		Dir::glob( path + "*" ).each { |fname|
+		Dir::glob(path + "*").each { |fname|
      if FileTest.directory?(fname) 
      	# ディレクトリの場合
       #  -> 現状は無視
       else
       	# パスの一部が含まれている場合
         if fname.to_s.include?(ta) 
-					# puts fname
+					
+        	stripfname = fname.sub(ta, "").sub(".csv", "") # 不要文字列の除去
+        	name_dates = stripfname.split("_")       # 「日付箇所」を分割
+					
+					# ツイート収集の日付範囲をチェック
+					if name_dates.length != 0 && name_dates[0].to_i < name_dates[1].to_i
+						puts name_dates
 
-        	# 不要な文字列を除去する
-        	fname.sub!(ta, "").sub!(".csv", "")
-					puts fname	# ->  20150311_midnight などかえる
+						# イベント開始日時を適切な形( 例: 20150301 )に変換
+						start_event_date_num = @start_event_date.strftime("%Y%m%d").to_i 
+						puts "@start_event_date : " + start_event_date_num.to_s  
 
-					#
-					# TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					#
-					# - noon, midnightの表記をやめる
-					#
+						#
+						# 現在日時と比較する
+						#
 
+						# 「ファイル名の日時の範囲内」である場合 
+						if name_dates[0].to_i <= start_event_date_num && start_event_date_num <= name_dates[1].to_i 
+							# puts "追加すべきファイル : " + fname
+							will_add_file = fname
+							break # 一件該当すればOK ( = 最新のファイルしか該当しない想定)
+						else
+							puts "範囲外            : " + fname
+						end
+					else
+						puts "無効なファイルです : " + fname
+					end
         end
       end
   	}
+  	return will_add_file	
+	end
+
+
+	#
+	# 新しいCSVファイルを作成
+	# return  新規作成したファイルパス (ファイル名含む)
+	#
+	def createNewCSVfile()
+		puts "\n" + "新しいファイルを作成します...\n"
+
+		#
+		# ファイル名見本
+		#	tweet_turtles_20150909_20150322.csv
+		#
+		# 「turtles」がタグ、
+		#  「_20150909_20150322」が収集範囲となる
+		#
+
+
+
 
 	end
 
