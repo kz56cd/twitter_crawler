@@ -4,10 +4,12 @@ require 'active_support/time_with_zone'
 require 'twitter'
 require 'csv'
 require './mLog'
+require './twitter_setting'
 
 class ExtractedTweets	
 
-	@l                          # mod Loggerインスタンス
+	@l                          # mod Logger     インスタンス
+	@ts                         # twitterSetting インスタンス
 	@start_event_time     		  # 収集開始時の時刻
 	@start_event_date     		  # 収集開始日
 	@since_collect_scope_time   # 収集範囲 (スタート)
@@ -15,7 +17,6 @@ class ExtractedTweets
 	@counter              		= 0
 	@stop_search_flg          = false
 	@collect_type         		= ""
-	
 
 	HARF_DAY_TIME_FORMAT      = 43200
 	COLLECT_TYPE_NOON         = "noon"
@@ -23,40 +24,22 @@ class ExtractedTweets
 	TIME_DIFF_FORMAT      	  = "%Y-%m-%d %H:%M:%S"
 	DATE_FORMAT           		= "%Y-%m-%d"
 	DATE_FILENAME_FORMAT      = "%Y%m%d"
-	
-	# +++++++++++++++++++++++++++++ twitter APP KEYS +++++++++++++++++++++++++++++ 
 
-	# 01
-	# YOUR_CONSUMER_KEY       = "qeCCQxCEnZcnSkS75zbj9MA18"
-	# YOUR_CONSUMER_SECRET    = "JYldeGC5R4cy3cEDzruXHVR0bJ97Qbjyc51n3OR1sUUTwb1n7q"
-	# YOUR_ACCESS_TOKEN       = "3060999120-Fhvnr9ownWbSOhSJ0iOFPGpm3k5PPiFA3KpCSR0"
-	# YOUR_ACCESS_SECRET      = "VMy3HEJrncS6wm7dWx5DhInNBWP70IHbtGZHeEwBnfSWf"
-
-	# 02
-	YOUR_CONSUMER_KEY       = "yIX9UZ1Tl4UmUbM79BlMDsASx"
-	YOUR_CONSUMER_SECRET    = "xz2zFj6aqJZULloi582hft7IcO9mBumnpljbezAmdCVLEwibJQ"
-	YOUR_ACCESS_TOKEN       = "3060999120-Cr7kW5p9tlt8DoClEyzjRsurv8hCD0jEjeRmLH2"
-	YOUR_ACCESS_SECRET      = "ljzmkDUe6ZuAa5Hock2mZfkrV0bR6ziBsF9LiIAPRq3qw"
-
-	# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-	# def initialize()
- #    puts "START_EVENT_TIME : " + @start_event_time.to_s
- #  end
-
+	def initialize()
+    @ts = TwitterSetting.new()
+  end
 
 	#
 	# twitterクライアントインスタンス取得（ * returnを省略した記法）
 	#
 	def getClient()
 		client = Twitter::REST::Client.new do |config|
-		  config.consumer_key        = YOUR_CONSUMER_KEY
-		  config.consumer_secret     = YOUR_CONSUMER_SECRET
-		  config.access_token        = YOUR_ACCESS_TOKEN
-		  config.access_token_secret = YOUR_ACCESS_SECRET
+		  config.consumer_key        = @ts.getConsumerKey()
+		  config.consumer_secret     = @ts.getConsumerSecret()
+		  config.access_token        = @ts.getAccessToken()
+		  config.access_token_secret = @ts.getAccessSecret()
 		end
 	end
-
 
 	#
 	#  キーワードに一致するtweetの取得
