@@ -12,7 +12,7 @@ class ClockManager
   @extractedTweets
 
   # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-  TWEET_GET_NUM = 100    # 一度の検索で取得するツイート数
+  TWEET_GET_NUM = 3    # 一度の検索で取得するツイート数
   SLEEP_TIME    = 60     # 検索後の待機時間
   # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -34,15 +34,17 @@ class ClockManager
 
     @extractedTweets = ExtractedTweets.new()
 
+    # ----------------------------------------------- #
     # テスト用（インターバルによるジョブ発火）
+    #
+
     # every(60.seconds, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
-    # every(1.day, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
+    every(1.day, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
 
-
+    # ----------------------------------------------- #
     # 本番（時間指定によるジョブ発火）
-    # every(1.day, 'extracted.job', :at => ['18:31', '18:32'], :thread => true) # ジョブの登録 (マルチスレッド対応) 
-    # every(1.day, 'extracted.job', :at => ['14:20'], :thread => true) # ジョブの登録 (マルチスレッド対応) 
+    #
 
-    every(1.day, 'extracted.job', :at => @start_time_list, :thread => true) # ジョブの登録 (マルチスレッド対応)   
+    # every(1.day, 'extracted.job', :at => @start_time_list, :thread => true) # ジョブの登録 (マルチスレッド対応)   
   end
 end

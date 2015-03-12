@@ -69,8 +69,10 @@ class ExtractedTweets
 		today 				    = @start_event_date.to_s.delete("-")
 		# ロガーインスタンス生成
 		@l = MLog.new(today) 
-		@l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||\n")
-		@l.mputs(" - - - - - - - - - - - - - - - - - - - - - - - - \nSTART_EVENT_TIME : " + @start_event_time.to_s)
+		@l.brs(5)
+		@l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||")
+		@l.br()
+		@l.mputs(" - - - - - - - - - - - - - - - - - - - - - - - - START_EVENT_TIME : " + @start_event_time.to_s)
 
 
 		# イニシャライズ
@@ -98,7 +100,9 @@ class ExtractedTweets
 		if will_add_file.length == 0 
 			csv_name = createNewCSVfile(path, tag) # 新規作成
 		else
-			@l.mputs("\n" + will_add_file + "に書き込みます...\n")
+			@l.br()
+			@l.mputs(will_add_file + "に書き込みます...")
+			@l.br()
 			csv_name = will_add_file
 
 			# テスト用！！！ (終わったら削除)
@@ -109,8 +113,10 @@ class ExtractedTweets
 
 
 		# csv_name = path + "tweet_" + tag + "_" + today + "_" + @collect_type + ".csv"
-		@l.mputs("\ntag              : " + tag)
-		@l.mputs("name             : " + csv_name + "\n - - - - - - - - - - - - - - - - - - - - - - - - ")
+		@l.br()
+		@l.mputs("tag              : " + tag)
+		@l.mputs("name             : " + csv_name)
+		@l.mputs("- - - - - - - - - - - - - - - - - - - - - - - - ")
 
 
 		# 通信させない際（テスト時など）はコメントアウト ------------------------------
@@ -186,7 +192,8 @@ class ExtractedTweets
 				# counter = 1
 			end
 
-			@l.mputs("\n||||||||||||||||||| func (get_extracted_tweet_all) end |||||||||||||||||||")
+			@l.br()
+			@l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) end |||||||||||||||||||")
 		end	
 
 		# @counter = 0 # カウンタを戻す
@@ -289,7 +296,8 @@ class ExtractedTweets
 	# return  追記すべきファイルパス (ファイル名含む)
 	#
 	def checkShouldAddCSVfile(path , tag)
-		@l.mputs("checkShouldAddCSVfile start\n")
+		@l.mputs("checkShouldAddCSVfile start")
+		@l.br()
 
 		will_add_file = ""
 
@@ -332,7 +340,7 @@ class ExtractedTweets
 							will_add_file = fname
 							break # 一件該当すればOK ( = 最新のファイルしか該当しない想定)
 						else
-							@l.mputs("範囲外            : " + fname)
+							@l.mputs("範囲外 : " + fname)
 						end
 					else
 						@l.mputs("無効なファイルです : " + fname)
@@ -350,8 +358,8 @@ class ExtractedTweets
 	#
 	def createNewCSVfile(path, tag)
 		@l.mputs(" + + + + + + + + + + + + + + + + + + ")
-		@l.mputs("新しいファイルを作成します...\n")
-
+		@l.mputs("新しいファイルを作成します...")
+		@l.br()
 		fname = ""
 
 		# --------------------------------------------
@@ -380,7 +388,8 @@ class ExtractedTweets
 		# 収集を終える日付 （必ず「日曜日」とする）の用意
 		end_date = start_date + (14 - 1).day
 		end_date_str = end_date.strftime(DATE_FILENAME_FORMAT)
-		@l.mputs("収集範囲(エンド)   : " + end_date_str + "\n ")
+		@l.mputs("収集範囲(エンド)   : " + end_date_str)
+		@l.br()
 
 		# 確認 ( = 日曜日になっているか)
 		if end_date.wday == 0
@@ -390,7 +399,8 @@ class ExtractedTweets
 
 			fname = path + "tweet_" + tag + "_" + start_date_str + "_" + end_date_str + ".csv"
 			@l.mputs("作成 : " + fname)
-			@l.mputs(" + + + + + + + + + + + + + + + + + + \n")
+			@l.mputs(" + + + + + + + + + + + + + + + + + +")
+			@l.br()
 		else
 			@l.mputs("ファイル作成エラー")
 		end

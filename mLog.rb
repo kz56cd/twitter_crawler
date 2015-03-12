@@ -4,7 +4,7 @@ class MLog
 
   #
   # 目的 :
-  # ログファイルとコンソール両方出力する
+  # ログファイル書込とコンソール出力、両方行う
   #
 
   @l
@@ -18,8 +18,24 @@ class MLog
 
   end
   
+  # ログ出力
   def mputs(msg)
     puts msg
     @l.info(msg)
   end
+
+  # 改行
+  def br
+    puts ""
+    @l.info("")
+  end
+
+  # 改行 (複数回)
+  def brs(num)
+    num.times do |i|
+      puts ""
+      @l.info("")  
+    end  
+  end
+
 end
