@@ -50,15 +50,20 @@ class LocalConfig
     #              ["11:10", "20:50"], 
     #              "./data/").setClock()
 
-    ClockManager.new("ねこあつめ　レア", 
-                 "cat", 
-                 ["14:45", "20:50"], 
-                 "./data/").setClock()
+    # ClockManager.new("ねこあつめ　レア", 
+    #              "cat", 
+    #              ["14:45", "20:50"], 
+    #              "./data/").setClock()
 
     # ClockManager.new("ニセコ　外人", 
     #              "niseko", 
     #              ["14:40", "20:50"], 
     #              "./data/").setClock()
+
+    ClockManager.new("#furyu", 
+                 "furyu", 
+                 ["10:10", "20:50"], 
+                 "./data/").setClock()
 
     # =========================================================================== #
 

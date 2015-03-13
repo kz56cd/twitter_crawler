@@ -4,4 +4,8 @@
 /data/log/
 /test/
 
-/twitter_setting
+# keys
+twitter_setting.rb
+
+# logfile (when use background)
+nohup.out
