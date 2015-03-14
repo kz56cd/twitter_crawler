@@ -3,7 +3,7 @@
 require 'active_support/time_with_zone'
 require 'twitter'
 require 'csv'
-require './mLog'
+require './m_log'
 require './twitter_setting'
 
 class ExtractedTweets	

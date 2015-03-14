@@ -39,13 +39,13 @@ class ClockManager
     #
 
     # every(60.seconds, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
-    # every(1.day, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
+    every(1.day, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
 
 
     # ----------------------------------------------- #
     # 本番（時間指定によるジョブ発火）
     #
 
-    every(1.day, 'extracted.job', :at => @start_time_list, :thread => true) # ジョブの登録 (マルチスレッド対応)   
+    # every(1.day, 'extracted.job', :at => @start_time_list, :thread => true) # ジョブの登録 (マルチスレッド対応)   
   end
 end
