@@ -60,10 +60,25 @@ class LocalConfig
     #              ["14:40", "20:50"], 
     #              "./data/").setClock()
 
-    ClockManager.new("#furyu", 
-                 "furyu", 
-                 ["10:10", "20:50"], 
-                 "./data/").setClock()
+
+
+
+
+
+    # ClockManager.new("谷中　商店街", 
+    #              "yanaka", 
+    #              ["14:35", "20:50"], 
+    #              "./data/").setClock()
+
+    # ClockManager.new("にこるん　テレビ", 
+    #                  "nicole", 
+    #                  ["16:10", "00:20"], 
+    #                  "./data/").setClock()
+
+    ClockManager.new("タートルズ フィギュア", 
+                     "turtles", 
+                     ["17:00", "20:50"], 
+                    "./data/").setClock()
 
     # =========================================================================== #
 

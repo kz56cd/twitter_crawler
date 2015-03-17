@@ -64,6 +64,7 @@ class ExtractedTweets
 		max_id   = 0
 		@counter = 0
 		csv_name = ""
+		addTweetlist = Array.new()
 	
 		@collect_type = getCollectType()
 		setCollectScopeTime() # つぶやき収集範囲の設定
@@ -99,8 +100,7 @@ class ExtractedTweets
 		cli = getClient()
 
 		# CSVファイル作成 / オープン
-		# CSV.open(csv_name, "wb") do |csv|
-		CSV.open(csv_name, "ab") do |csv|
+		# CSV.open(csv_name, "a") do |csv|
 			@l.mputs('csv open...')
 
 			# while @counter == 0  do
@@ -130,19 +130,23 @@ class ExtractedTweets
 					  	
 					  else 
 					  	# CSV書込
-					  	csv << [
-						  	tweet.id.to_s, 
-						  	tweet.attrs[:user][:screen_name],
-						  	tweet.attrs[:user][:name],
-						  	tweet.attrs[:user][:followers_count], 
-						  	tweet.text, 
-						  	hasImage, 
-						  	tweet.created_at,
-						  	"https://twitter.com/" + tweet.attrs[:user][:screen_name]
-							]
+					  # 	csv << [
+						 #  	tweet.id.to_s, 
+						 #  	tweet.attrs[:user][:screen_name],
+						 #  	tweet.attrs[:user][:name],
+						 #  	tweet.attrs[:user][:followers_count], 
+						 #  	tweet.text, 
+						 #  	hasImage, 
+						 #  	tweet.created_at,
+						 #  	"https://twitter.com/" + tweet.attrs[:user][:screen_name]
+							# ]
+
+							addTweetlist.unshift(tweet)
 					  end
 
 					  # ================ / 作業中 ================
+
+					  puts "addTweetlist : " + addTweetlist.length.to_s
 
 					  max_id = tweet.id
 					end
@@ -166,12 +170,40 @@ class ExtractedTweets
 
 			@l.br()
 			@l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) end |||||||||||||||||||")
-		end	
+		# end	
 
 		# @counter = 0 # カウンタを戻す
 		@stop_search_flg = false
+
+		addCSVfromList(csv_name, addTweetlist)
 	end
 
+
+	#
+	# 配列よりCSVファイルへの追加
+	#
+	def addCSVfromList(name, list)
+		
+		@l.mputs("CSV書込開始 : " + name) 
+		@l.mputs("行数        : " + list.length.to_s)
+
+		CSV.open(name, "a") do |csv|
+			list.each do |t|
+				csv << [
+						  	t.id.to_s, 
+						  	t.attrs[:user][:screen_name],
+						  	t.attrs[:user][:name],
+						  	t.attrs[:user][:followers_count], 
+						  	t.text, 
+						  	checkHasImages(t.attrs), # 画像の有無チェック 
+						  	t.created_at,
+						  	"https://twitter.com/" + t.attrs[:user][:screen_name]
+							]
+			end
+		end
+
+		@l.mputs("CSV書込完了")
+	end
 
 	#
 	# 日付の比較
