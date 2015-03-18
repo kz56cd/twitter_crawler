@@ -1,4 +1,5 @@
 require './clock_manager'
+# require '/clock_manager'
 
 class LocalConfig
 
@@ -82,7 +83,7 @@ class LocalConfig
 
     ClockManager.new("谷中　猫", 
                      "cat", 
-                     ["13:10", "20:50"], 
+                     ["18:50", "20:50"], 
                     "./data/").setClock()
 
 

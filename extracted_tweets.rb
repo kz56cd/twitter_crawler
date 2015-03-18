@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # require "active_support"
 # require "active_support/all"
 require 'active_support/time_with_zone'
@@ -95,6 +97,11 @@ class ExtractedTweets
 		@l.mputs("name             : " + csv_name)
 		@l.mputs("- - - - - - - - - - - - - - - - - - - - - - - - ")
 
+
+		# テスト用！！！！！！
+		# willDeleteBackupFile(backup_csv_name, csv_name, isNewFile)
+
+
 		# 通信させない際（テスト時など）はコメントアウト ------------------------------
 		# sleep 9999
 		# ------------------------------------------------------------------------
@@ -153,19 +160,19 @@ class ExtractedTweets
 		@stop_search_flg = false
 
 		# CSVファイルへの追加 / 修正の準備	
-		prepareForModifingCSV(csv_name, backup_csv_name, addTweetlist)		
+		prepareForModifingCSV(csv_name, backup_csv_name, addTweetlist, isNewFile)		
 	end
 
 	#
 	# CSVファイルへの追加 / 修正の準備
 	#	
-	def prepareForModifingCSV(name, bk_name, list)
+	def prepareForModifingCSV(name, bk_name, list, isNew)
 		@l.br()
 		@l.mputs("++++++++++++++ CSVファイル調整 : 開始 ++++++++++++++")
 		@l.mputs("追加予定のリスト数 : " + list.length.to_s)
-		addCSVfromList(name, list)						# 既存CSVファイルへの行追加
-		changeLineFeedCode(CSV_MODE, name)		# 改行コード変更
-		deleteBackupFile(bk_name, name)			  # バックアップファイルの消去
+		addCSVfromList(name, list)						   # 既存CSVファイルへの行追加
+		changeLineFeedCode(CSV_MODE, name)		   # 改行コード変更
+		willDeleteBackupFile(bk_name, name, isNew) # バックアップファイルの消去
 		@l.mputs("++++++++++++++ CSVファイル調整 : 完了 ++++++++++++++")
 	end
 
@@ -481,10 +488,91 @@ class ExtractedTweets
 
 
 	#
-	# バックアップCSVファイルの作成
+	# バックアップCSVファイルを削除してよいかチェック
+	#
+	def willDeleteBackupFile(bk_name, name, isNew)
+		@l.mputs("バックアップファイルを削除してよいかチェック。。")
+		isNew == true ? deleteEmptyBackupFile(bk_name, name) : deleteBackupFile(bk_name, name) 
+	end
+
+
+	#
+	# バックアップCSVファイル（空）の削除
+	#
+	def deleteEmptyBackupFile(bk_name, name)
+		# 確認は、なし
+		File.delete(bk_name)
+		@l.mputs("バックアップファイル（空）を削除 : " + bk_name)
+	end
+
+
+	#
+	# バックアップCSVファイルの削除
 	#
 	def deleteBackupFile(bk_name, name)
-		@l.mputs("。。。。削除したつもり。。。。")
+
+		# 確認事項 ---------------------------------------------------------------
+		# 01: 「バックアップファイル」の最終行は「新しいCSVファイル」の方にも存在するか
+		# 02: 先頭のidは同一か 
+		# 03: lengthは「新しいCSVファイル」の方が長いか
+
+		flg_cnt     = 0
+		num         = 0
+		first_id    = ""
+		last_id     = ""
+		bk_num      = 0
+		bk_first_id = ""
+
+		# 「新しいCSVファイル」を開く
+		CSV.open(name , "r:utf-8") { |io|
+			io.read.each.with_index(0) do |tweet, index|
+				if index == 0
+					first_id = tweet[0].sub(/(\=|\")/, "")  # <= hash化しても良かったが 取り急ぎindexで取得する					
+				end
+				last_id = tweet[0].sub(/(\=|\")/, "") 		 # 上書
+				num = index
+			end
+		}
+
+		# 「バックアップファイル」を開く
+		flg = false
+		CSV.open(bk_name , "r:utf-8") { |io|
+			io.read.each.with_index(0) do |tweet, index|
+				if index == 0
+					bk_first_id = tweet[0].sub(/(\=|\")/, "")	
+				end
+
+				# 確認
+				# 01: 「バックアップファイル」の最終行は「新しいCSVファイル」の方にも存在するか		
+				if flg == false && last_id == tweet[0].sub(/(\=|\")/, "")
+					flg = true
+					flg_cnt = flg_cnt + 1
+					@l.mputs(" ---> check 01: ok")
+				end
+				bk_num = index
+			end
+		}		
+
+		# 確認
+		# 02: 先頭のidは同一か 
+		if bk_first_id == first_id
+			flg_cnt = flg_cnt + 1
+			@l.mputs(" ---> check 02: ok")
+		end
+
+		# 確認
+		# 03: lengthは「新しいCSVファイル」の方が長いか、同一か
+		if bk_num <= num 
+			flg_cnt = flg_cnt + 1
+			@l.mputs(" ---> check 03: ok")
+		end
+
+		# 全て確認をパスした場合
+		if flg_cnt == 3
+			puts "flg_cnt : " + flg_cnt.to_s
+			File.delete(bk_name)
+			@l.mputs("バックアップファイルを削除 : " + bk_name)
+		end
 	end
 
 end

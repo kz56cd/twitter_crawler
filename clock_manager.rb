@@ -47,5 +47,11 @@ class ClockManager
     #
 
     # every(1.day, 'extracted.job', :at => @start_time_list, :thread => true) # ジョブの登録 (マルチスレッド対応)   
+
+
+    # error_handler do |error|
+    #   Airbrake.notify_or_ignore(error)
+    # end
+    
   end
 end
