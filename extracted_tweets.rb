@@ -24,9 +24,15 @@ class ExtractedTweets
 	TIME_DIFF_FORMAT      	  = "%Y-%m-%d %H:%M:%S"
 	DATE_FORMAT           		= "%Y-%m-%d"
 	DATE_FILENAME_FORMAT      = "%Y%m%d"
+	BACKUP_FILENAME_FORMAT    = "bk_"
+
+	CSV_MODE_EXCEL						= 1
+	CSV_MODE_OTHER						= 0
+	CSV_MODE 									= CSV_MODE_OTHER
+
 
 	def initialize()
-    @ts = TwitterSetting.new()
+    @ts = TwitterSetting.new()		
   end
 
 	#
@@ -53,18 +59,18 @@ class ExtractedTweets
 		today 				    = @start_event_date.to_s.delete("-")
 		# ロガーインスタンス生成
 		@l = MLog.new(today, csv_path) 
-		@l.brs(5)
-		@l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||")
-		@l.br()
+		@l.brs(5); @l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||"); @l.br()
 		@l.mputs(" - - - - - - - - - - - - - - - - - - - - - - - - START_EVENT_TIME : " + @start_event_time.to_s)
 
 
 		# イニシャライズ
-		since_id = 0
-		max_id   = 0
-		@counter = 0
-		csv_name = ""
-		addTweetlist = Array.new()
+		since_id 				= 0
+		max_id   			  = 0
+		@counter        = 0
+		csv_name 				= ""
+		backup_csv_name = ""
+		isNewFile       = true 
+		addTweetlist	  = Array.new()
 	
 		@collect_type = getCollectType()
 		setCollectScopeTime() # つぶやき収集範囲の設定
@@ -76,21 +82,18 @@ class ExtractedTweets
 		if will_add_file.length == 0 
 			csv_name = createNewCSVfile(path, tag) # 新規作成
 		else
-			@l.br()
-			@l.mputs(will_add_file + "に書き込みます...")
-			@l.br()
-			csv_name = will_add_file
-
-			# テスト用！！！ (終わったら削除)
-			# createNewCSVfile(path, tag) # 新規作成
+			@l.br(); @l.mputs(will_add_file + "に書き込みます..."); @l.br()
+			csv_name  = will_add_file
+			isNewFile = false 
 		end
 
-		# csv_name = path + "tweet_" + tag + "_" + today + "_" + @collect_type + ".csv"
+		# バックアップCSVファイルの作成
+		backup_csv_name = makeBackupCSVFile(path, csv_name, isNewFile)
+
 		@l.br()
 		@l.mputs("tag              : " + tag)
 		@l.mputs("name             : " + csv_name)
 		@l.mputs("- - - - - - - - - - - - - - - - - - - - - - - - ")
-
 
 		# 通信させない際（テスト時など）はコメントアウト ------------------------------
 		# sleep 9999
@@ -101,16 +104,11 @@ class ExtractedTweets
 
 		# CSVファイル作成 / オープン
 		# CSV.open(csv_name, "a") do |csv|
-			@l.mputs('csv open...')
-
-			# while @counter == 0  do
 			while (!@stop_search_flg) do
 				begin
 					@l.mputs("検索開始")
 			    # cli.search(search_word, :count => 1, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
 			    cli.search(search_word, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
-
-			    	# puts tweet.attrs.to_a
 
 			    	hasImage = checkHasImages(tweet.attrs) # 画像の有無をチェック (int)
 
@@ -123,32 +121,14 @@ class ExtractedTweets
 					  @l.mputs("https://twitter.com/" + tweet.attrs[:user][:screen_name])
 					  @l.mputs("==============================================")
 
-					  # ================ 作業中 ================
-
 					  # tweet.created_atはTimeクラスなので、このまま比較する 
 					  if checkForTimeExceeding(tweet.created_at)
-					  	
+					  	# 現状はスタブ
 					  else 
-					  	# CSV書込
-					  # 	csv << [
-						 #  	tweet.id.to_s, 
-						 #  	tweet.attrs[:user][:screen_name],
-						 #  	tweet.attrs[:user][:name],
-						 #  	tweet.attrs[:user][:followers_count], 
-						 #  	tweet.text, 
-						 #  	hasImage, 
-						 #  	tweet.created_at,
-						 #  	"https://twitter.com/" + tweet.attrs[:user][:screen_name]
-							# ]
-
-							addTweetlist.unshift(tweet)
+							addTweetlist.unshift(tweet) # 配列の先頭へ追加
 					  end
-
-					  # ================ / 作業中 ================
-
-					  puts "addTweetlist : " + addTweetlist.length.to_s
-
 					  max_id = tweet.id
+
 					end
 
 			  # 検索ワードで Tweet を取得できなかった場合の例外処理
@@ -159,13 +139,10 @@ class ExtractedTweets
 			    retry
 				end
 
-				# 待機時間を設定
-				@l.mputs('(sleep ...)')
-				sleep(sleep_time)
-			
-				# 確認用
-				# @l.mputs("end (not sleep)")
-				# counter = 1
+				if @stop_search_flg == false
+					@l.mputs('(sleep ...)')
+					sleep(sleep_time) # 待機 ( = トラフィック軽減のため)
+				end
 			end
 
 			@l.br()
@@ -175,7 +152,21 @@ class ExtractedTweets
 		# @counter = 0 # カウンタを戻す
 		@stop_search_flg = false
 
-		addCSVfromList(csv_name, addTweetlist)
+		# CSVファイルへの追加 / 修正の準備	
+		prepareForModifingCSV(csv_name, backup_csv_name, addTweetlist)		
+	end
+
+	#
+	# CSVファイルへの追加 / 修正の準備
+	#	
+	def prepareForModifingCSV(name, bk_name, list)
+		@l.br()
+		@l.mputs("++++++++++++++ CSVファイル調整 : 開始 ++++++++++++++")
+		@l.mputs("追加予定のリスト数 : " + list.length.to_s)
+		addCSVfromList(name, list)						# 既存CSVファイルへの行追加
+		changeLineFeedCode(CSV_MODE, name)		# 改行コード変更
+		deleteBackupFile(bk_name, name)			  # バックアップファイルの消去
+		@l.mputs("++++++++++++++ CSVファイル調整 : 完了 ++++++++++++++")
 	end
 
 
@@ -190,14 +181,14 @@ class ExtractedTweets
 		CSV.open(name, "a") do |csv|
 			list.each do |t|
 				csv << [
-						  	t.id.to_s, 
-						  	t.attrs[:user][:screen_name],
-						  	t.attrs[:user][:name],
-						  	t.attrs[:user][:followers_count], 
-						  	t.text, 
-						  	checkHasImages(t.attrs), # 画像の有無チェック 
-						  	t.created_at,
-						  	"https://twitter.com/" + t.attrs[:user][:screen_name]
+							  	modHeadColumnForExcel(CSV_MODE, t.id.to_s), # （エクセル用にフォーマット整える場合は）true選択 
+							  	t.attrs[:user][:screen_name],
+							  	t.attrs[:user][:name],
+							  	t.attrs[:user][:followers_count], 
+							  	t.text, 
+							  	checkHasImages(t.attrs), # 画像の有無チェック 
+							  	t.created_at,
+						  		"https://twitter.com/" + t.attrs[:user][:screen_name]
 							]
 			end
 		end
@@ -410,6 +401,90 @@ class ExtractedTweets
 		end
 
 		return fname
+	end
+
+
+	### for CSV_MODE_EXCEL
+
+
+	#
+	# 先頭カラムが（Excel上で）正しく表示されるよう調整
+	#
+	def modHeadColumnForExcel(flg, str)
+		
+		# Excelモードの場合
+		if flg == CSV_MODE_EXCEL 
+			str = "=\"" + str + "\""
+			# @l.mputs("先頭カラム調整完了 : " + name)
+		end
+		return str
+	end
+
+
+	#
+	# 改行コードの変更
+	#
+	def changeLineFeedCode(flg, name)
+		
+		# Excelモードの場合
+		if flg == CSV_MODE_EXCEL 
+
+			modCsvText = ""
+
+			# CRLFに変更する ( = 通常はCR)
+			File.open(name , "rb" ) { |io|
+				csvText = io.read
+
+				# 改行コード変換 (全改行コードが対象)
+				modCsvText = csvText.gsub!(/(\r\n|\n|\r)/ , "\r\n")
+			}
+
+			if modCsvText.length != 0
+				# ファイル書込			
+				File.open(name, "wb") { |io|
+					io.write(modCsvText)
+				}
+
+				@l.mputs("改行コード変換完了 : " + name)
+			end
+		end
+	end
+
+
+	### for backup CSV file
+
+
+	#
+	# バックアップCSVファイルの作成
+	#
+	def makeBackupCSVFile(path, name, isNew)
+		# バックアップ用のファイル名用意
+		modname = name.sub(path , "")
+		modname = path + BACKUP_FILENAME_FORMAT + modname
+
+		# 元ファイルが空でない場合
+		if isNew == false 
+			# コピー元のデータを取得
+			source = ""
+			File.open(name , "rb" ) { |io|
+				source = io.read
+			}
+		end 
+
+		# コピー先に書込
+		File.open(modname, "wb") { |io|
+			io.write(source)
+		}
+		@l.mputs(isNew == false ? "バックアップファイル作成 : " + modname : "バックアップファイル作成 （空） : " + modname) 
+		return modname
+	end
+
+
+	#
+	# バックアップCSVファイルの作成
+	#
+	def deleteBackupFile(bk_name, name)
+		@l.mputs("。。。。削除したつもり。。。。")
 	end
 
 end

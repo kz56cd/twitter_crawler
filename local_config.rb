@@ -75,10 +75,18 @@ class LocalConfig
     #                  ["16:10", "00:20"], 
     #                  "./data/").setClock()
 
-    ClockManager.new("タートルズ フィギュア", 
-                     "turtles", 
-                     ["17:00", "20:50"], 
+    # ClockManager.new("タートルズ フィギュア", 
+    #                  "turtles", 
+    #                  ["17:00", "20:50"], 
+    #                 "./data/").setClock()
+
+    ClockManager.new("谷中　猫", 
+                     "cat", 
+                     ["13:10", "20:50"], 
                     "./data/").setClock()
+
+
+
 
     # =========================================================================== #
 
