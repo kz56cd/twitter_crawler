@@ -30,7 +30,7 @@ class ExtractedTweets
 
 	CSV_MODE_EXCEL						= 1
 	CSV_MODE_OTHER						= 0
-	CSV_MODE 									= CSV_MODE_OTHER
+	CSV_MODE 									= CSV_MODE_EXCEL
 
 
 	def initialize()
@@ -171,8 +171,9 @@ class ExtractedTweets
 		@l.mputs("++++++++++++++ CSVファイル調整 : 開始 ++++++++++++++")
 		@l.mputs("追加予定のリスト数 : " + list.length.to_s)
 		addCSVfromList(name, list)						   # 既存CSVファイルへの行追加
-		changeLineFeedCode(CSV_MODE, name)		   # 改行コード変更
+		changeLineFeedCode(CSV_MODE, name, "LF")		   # 改行コード変更
 		willDeleteBackupFile(bk_name, name, isNew) # バックアップファイルの消去
+		changeLineFeedCode(CSV_MODE, name, "CRLF")		   # 改行コード変更
 		@l.mputs("++++++++++++++ CSVファイル調整 : 完了 ++++++++++++++")
 	end
 
@@ -431,10 +432,17 @@ class ExtractedTweets
 	#
 	# 改行コードの変更
 	#
-	def changeLineFeedCode(flg, name)
+	def changeLineFeedCode(flg, name, type)
 		
 		# Excelモードの場合
-		if flg == CSV_MODE_EXCEL 
+		if flg == CSV_MODE_EXCEL
+
+			replace_str = ""
+			if type == "CRLF"
+				replace_str = "\r\n"
+			else
+				replace_str = "\n"
+			end 
 
 			modCsvText = ""
 
@@ -443,7 +451,7 @@ class ExtractedTweets
 				csvText = io.read
 
 				# 改行コード変換 (全改行コードが対象)
-				modCsvText = csvText.gsub!(/(\r\n|\n|\r)/ , "\r\n")
+				modCsvText = csvText.gsub!(/(\r\n|\n|\r)/ , replace_str)
 			}
 
 			if modCsvText.length != 0
@@ -452,7 +460,7 @@ class ExtractedTweets
 					io.write(modCsvText)
 				}
 
-				@l.mputs("改行コード変換完了 : " + name)
+				@l.mputs("改行コード変換完了 (" + type + ") : " + name)
 			end
 		end
 	end
@@ -522,6 +530,9 @@ class ExtractedTweets
 		last_id     = ""
 		bk_num      = 0
 		bk_first_id = ""
+
+		# さくら用
+		# 一旦改行コードをCRに戻す
 
 		# 「新しいCSVファイル」を開く
 		CSV.open(name , "r:utf-8") { |io|
