@@ -81,11 +81,30 @@ class LocalConfig
     #                  ["17:00", "20:50"], 
     #                 "./data/").setClock()
 
-    ClockManager.new("谷中　猫", 
-                     "cat", 
-                     ["18:50", "20:50"], 
-                    "./data/").setClock()
+    # ClockManager.new("谷中　猫", 
+    #                  "cat", 
+    #                  ["18:50", "20:50"], 
+    #                 "./data/").setClock()
 
+    # ClockManager.new("インターステラー　フィギュア", 
+    #                 "inter", 
+    #                 ["11:00", "00:05"], 
+    #                 "./data/").setClock()
+
+    # ClockManager.new("上野って", 
+    #                  "ueno", 
+    #                 ["13:05", "01:05"], 
+    #                 "./data/").setClock()
+
+    # ClockManager.new("整体　カイロ", 
+    #                  "seitai", 
+    #                  ["14:05", "02:05"], 
+    #                  "./data/").setClock()
+
+    ClockManager.new("ちいぼぼ 事務所", 
+                     "chiepopo", 
+                     ["12:40", "03:05"], 
+                     "./data/").setClock()
 
 
 
