@@ -9,7 +9,7 @@ class ClockManager
   @tag      = ""
   @csv_path = ""
   @start_time_list
-  @extractedTweets
+  @extracted_tweets
 
   # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
   TWEET_GET_NUM = 100    # 一度の検索で取得するツイート数
@@ -28,11 +28,11 @@ class ClockManager
     handler do |job|
       case job
         when "extracted.job"
-          @extractedTweets.getTweetAll(@key, TWEET_GET_NUM, SLEEP_TIME, @tag, @csv_path) # ツイート収集開始
+          @extracted_tweets.getTweetAll(@key, TWEET_GET_NUM, SLEEP_TIME, @tag, @csv_path) # ツイート収集開始
       end
     end
 
-    @extractedTweets = ExtractedTweets.new()
+    @extracted_tweets = ExtractedTweets.new()
 
     # ----------------------------------------------- #
     # テスト用（インターバルによるジョブ発火）

@@ -141,13 +141,13 @@ class ExtractedTweets
 			    cli.search(search_word, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
 					# cli.search(search_word, :count => 1, :result_type => "recent", :max_id => max_id).take(tweet_num).each do |tweet|
 
-			    	hasImage = checkHasImages(tweet.attrs) # 画像の有無をチェック (int)
+			    	has_image = checkHasImages(tweet.attrs) # 画像の有無をチェック (int)
 
 					  @l.mputs(tweet.id.to_s)
 					  @l.mputs(tweet.attrs[:user][:screen_name])
 					  @l.mputs(tweet.attrs[:user][:name])
 					  @l.mputs(tweet.text)
-					  @l.mputs("image : " + hasImage.to_s)
+					  @l.mputs("image : " + has_image.to_s)
 					  @l.mputs(tweet.created_at)
 					  @l.mputs("https://twitter.com/" + tweet.attrs[:user][:screen_name])
 					  @l.mputs("==============================================")
@@ -191,13 +191,13 @@ class ExtractedTweets
 		prepareForModifingCSV(csv_name, backup_csv_name, add_tweet_list, is_new_file)
 		
 		@should_stop_searching   = false
-		@is_logged_exception = false
+		@is_logged_exception     = false
 	end
 
 	#
 	# CSVファイルへの追加 / 修正の準備
 	#	
-	def prepareForModifingCSV(name, bk_name, list, isNew)
+	def prepareForModifingCSV(name, bk_name, list, is_new)
 
 		list_cnt_str = list.length.to_s
 
@@ -209,7 +209,7 @@ class ExtractedTweets
 			@l.mputs("追加予定のリスト数 : " + list_cnt_str)
 			addCSVfromList(name, list)						   				 					 # 既存CSVファイルへの行追加
 			changeLineFeedCode(CSV_MODE, name, CSV_NEWLINE_CODE_OTHER) # 改行コード変更
-			willDeleteBackupFile(bk_name, name, isNew) 			 					 # バックアップファイルの消去
+			willDeleteBackupFile(bk_name, name, is_new) 			 					 # バックアップファイルの消去
 			changeLineFeedCode(CSV_MODE, name, CSV_NEWLINE_CODE_EXCEL) # 改行コード変更
 			@l.mputs("++++++++++++++ CSVファイル調整 : 完了 ++++++++++++++")
 		end
@@ -510,13 +510,13 @@ class ExtractedTweets
 	#
 	# バックアップCSVファイルの作成
 	#
-	def makeBackupCSVFile(path, name, isNew)
+	def makeBackupCSVFile(path, name, is_new)
 		# バックアップ用のファイル名用意
 		mod_name = name.sub(path , "")
 		mod_name = path + BACKUP_FILENAME_FORMAT + mod_name
 
 		# 元ファイルが空でない場合
-		if isNew == false 
+		if is_new == false 
 			# コピー元のデータを取得
 			source = ""
 			File.open(name , "rb" ) { |io|
@@ -528,7 +528,7 @@ class ExtractedTweets
 		File.open(mod_name, "wb") { |io|
 			io.write(source)
 		}
-		@l.mputs(isNew == false ? "バックアップファイル作成 : " + mod_name : "バックアップファイル作成 （空） : " + mod_name) 
+		@l.mputs(is_new == false ? "バックアップファイル作成 : " + mod_name : "バックアップファイル作成 （空） : " + mod_name) 
 		return mod_name
 	end
 
@@ -536,9 +536,9 @@ class ExtractedTweets
 	#
 	# バックアップCSVファイルを削除してよいかチェック
 	#
-	def willDeleteBackupFile(bk_name, name, isNew)
+	def willDeleteBackupFile(bk_name, name, is_new)
 		@l.mputs("バックアップファイルを削除してよいかチェック。。")
-		isNew == true ? deleteEmptyBackupFile(bk_name, name) : deleteBackupFile(bk_name, name) 
+		is_new == true ? deleteEmptyBackupFile(bk_name, name) : deleteBackupFile(bk_name, name) 
 	end
 
 
