@@ -38,6 +38,7 @@ class ExtractedTweets
 	LOG_MSG_NO_SCOPE_TWEET	  = "_____CHECK_ME_____ >>> 収集範囲内のツイートがありません。"
 	LOG_MSG_SOME_ERROR   	    = "_____CHECK_ME_____ >>> 何らかのエラーが発生しました。"
 	LOG_MSG_STOP_FUNC 				= "_____CHECK_ME_____ >>> 処理を停止します。"
+	LOG_MSG_SEARCH_WORD				= "_____CHECK_ME_____ >>> 検索ワード : "
 
 	# |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 	CSV_MODE 									= CSV_MODE_EXCEL 		# CSV書出モード
@@ -179,19 +180,19 @@ class ExtractedTweets
 			# 検索結果が0件( = ツイート自体無い)かチェックする
 			if cnt >= 3 && error_cnt == 0
 				@should_stop_searching = true
-				showExceptionLog(LOG_MSG_NO_TWEET)  # ログ表示
+				showExceptionLog(LOG_MSG_NO_TWEET) # ログ表示
 				break
 			end
 		end
 
-		@l.br()
-		@l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) end |||||||||||||||||||")
-		
 		# CSVファイルへの追加 / 修正の準備	
 		prepareForModifingCSV(csv_name, backup_csv_name, add_tweet_list, is_new_file)
 		
 		@should_stop_searching   = false
 		@is_logged_exception     = false
+
+		@l.br()
+		@l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) end |||||||||||||||||||")
 	end
 
 	#
@@ -202,7 +203,8 @@ class ExtractedTweets
 		list_cnt_str = list.length.to_s
 
 		if list_cnt_str == "0"
-			showExceptionLog(LOG_MSG_NO_SCOPE_TWEET) # 追加ツイート 0件 (ログ出力)
+			showExceptionLog(LOG_MSG_NO_SCOPE_TWEET) 			# 追加ツイート 0件 (ログ出力)
+			willDeleteBackupFile(bk_name, name, is_new) 	# バックアップファイルの消去
 		else
 			@l.br()
 			@l.mputs("++++++++++++++ CSVファイル調整 : 開始 ++++++++++++++")
@@ -635,9 +637,10 @@ class ExtractedTweets
 		# 例外出力を一度も行っていない場合
 		if @is_logged_exception == false
 			# 出力
-			@l.br()
+			@l.brs(5)
 			@l.mputs(str)
 			showExceptionLogByFixedPattern()
+			@l.brs(5)
 		end
 
 		@is_logged_exception = true 
@@ -647,7 +650,7 @@ class ExtractedTweets
 	# ログ出力（定型文）
 	#
 	def showExceptionLogByFixedPattern()
-		@l.mputs("検索した語句 : " + @search_word)
+		@l.mputs(LOG_MSG_SEARCH_WORD + @search_word)
 		@l.mputs(LOG_MSG_STOP_FUNC)
 	end
 

@@ -101,7 +101,7 @@ class LocalConfig
     #                  ["14:05", "02:05"], 
     #                  "./data/").setClock()
 
-    ClockManager.new("ちいぼぼ 事務所", 
+    ClockManager.new("#ちぃぽぽ", 
                      "chiepopo", 
                      ["12:40", "03:05"], 
                      "./data/").setClock()
