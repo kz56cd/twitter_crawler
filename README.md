@@ -25,5 +25,5 @@ $ clockwork start_crawling.rb
 * (linux OR osx) if you want to run it in buckground, put this command  :
 
 ```
-$ nohup clockwork clock.rb &
+$ nohup clockwork start_crawling &
 ```

@@ -1,4 +1,4 @@
-require './clock_manager'
+require_relative './clock_manager'
 # require '/clock_manager'
 
 class LocalConfig
@@ -71,15 +71,7 @@ class LocalConfig
     #              ["14:35", "20:50"], 
     #              "./data/").setClock()
 
-    # ClockManager.new("にこるん　テレビ", 
-    #                  "nicole", 
-    #                  ["16:10", "00:20"], 
-    #                  "./data/").setClock()
-
-    # ClockManager.new("タートルズ フィギュア", 
-    #                  "turtles", 
-    #                  ["17:00", "20:50"], 
-    #                 "./data/").setClock()
+    
 
     # ClockManager.new("谷中　猫", 
     #                  "cat", 
@@ -91,22 +83,25 @@ class LocalConfig
     #                 ["11:00", "00:05"], 
     #                 "./data/").setClock()
 
-    # ClockManager.new("上野って", 
-    #                  "ueno", 
-    #                 ["13:05", "01:05"], 
-    #                 "./data/").setClock()
+    # ClockManager.new("#にこるん ニコル", 
+    #                  "nicole", 
+    #                  ["12:05", "00:05"], 
+    #                  "./data/").setClock()
 
-    # ClockManager.new("整体　カイロ", 
-    #                  "seitai", 
+    # ClockManager.new("#ちぃぽぽ", 
+    #                  "chiepopo", 
+    #                  ["13:05", "01:05"], 
+    #                  "./data/").setClock()
+
+    # ClockManager.new("タートルズ フィギュア", 
+    #                  "turtles", 
     #                  ["14:05", "02:05"], 
     #                  "./data/").setClock()
 
-    ClockManager.new("#ちぃぽぽ", 
-                     "chiepopo", 
-                     ["12:40", "03:05"], 
+    ClockManager.new("プリクラ", 
+                     "puri", 
+                     ["15:05", "03:05"], 
                      "./data/").setClock()
-
-
 
     # =========================================================================== #
 

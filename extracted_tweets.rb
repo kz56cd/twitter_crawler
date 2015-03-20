@@ -5,8 +5,8 @@
 require 'active_support/time_with_zone'
 require 'twitter'
 require 'csv'
-require './m_log'
-require './twitter_setting'
+require_relative './m_log'
+require_relative './twitter_setting'
 
 class ExtractedTweets	
 
@@ -16,8 +16,8 @@ class ExtractedTweets
 	@start_event_date     		  # 収集開始日
 	@since_collect_scope_time   # 収集範囲 (スタート)
 	@till_collect_scope_time    # 収集範囲 (エンド)
-	@should_stop_searching    = false
-	@is_logged_exception      = false
+	@should_stop_searching    
+	@is_logged_exception      
 	@collect_type         		= ""
 	@search_word							= ""
 
@@ -76,15 +76,17 @@ class ExtractedTweets
 		@l.mputs(" - - - - - - - - - - - - - - - - - - - - - - - - START_EVENT_TIME : " + @start_event_time.to_s)
 
 		# イニシャライズ
-		since_id 				     = 0
-		max_id   			       = 0
-		cnt                  = 0
-		error_cnt				     = 0
-		csv_name 					   = ""
-		backup_csv_name 	   = ""
-		is_new_file      	   = true 
-		add_tweet_list	  	 = Array.new()
-		@is_logged_exception = false
+		since_id 				       = 0
+		max_id   			         = 0
+		cnt                	   = 0
+		error_cnt				     	 = 0
+		csv_name 					   	 = ""
+		backup_csv_name 	   	 = ""
+		is_new_file      	   	 = true 
+		add_tweet_list	  	 	 = Array.new()
+		@is_logged_exception   = false
+		@should_stop_searching = false
+
 	
 		@collect_type = getCollectType()
 		setCollectScopeTime() # つぶやき収集範囲の設定

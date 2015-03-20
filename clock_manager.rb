@@ -1,5 +1,5 @@
-require './extracted_tweets'
-require './local_config'
+require_relative './extracted_tweets'
+require_relative './local_config'
 require 'clockwork'
 include Clockwork
 
@@ -32,6 +32,10 @@ class ClockManager
       end
     end
 
+    # configure do |config|
+    #   config[:max_threads] = 1
+    # end
+
     @extracted_tweets = ExtractedTweets.new()
 
     # ----------------------------------------------- #
@@ -52,6 +56,8 @@ class ClockManager
     # error_handler do |error|
     #   Airbrake.notify_or_ignore(error)
     # end
+
+    
     
   end
 end
