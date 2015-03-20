@@ -13,7 +13,7 @@ class ClockManager
 
   # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
   TWEET_GET_NUM = 100    # 一度の検索で取得するツイート数
-  SLEEP_TIME    = 60     # 検索後の待機時間
+  SLEEP_TIME    = 30     # 検索後の待機時間 (秒)
   # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
   def initialize(key , tag, startTimeList, csv_path)
@@ -43,14 +43,14 @@ class ClockManager
     #
 
     # every(60.seconds, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
-    every(1.day, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
+    # every(1.day, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
 
 
     # ----------------------------------------------- #
     # 本番（時間指定によるジョブ発火）
     #
 
-    # every(1.day, 'extracted.job', :at => @start_time_list, :thread => true) # ジョブの登録 (マルチスレッド対応)   
+    every(1.day, 'extracted.job', :at => @start_time_list, :thread => true) # ジョブの登録 (マルチスレッド対応)   
 
 
     # error_handler do |error|

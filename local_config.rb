@@ -71,8 +71,6 @@ class LocalConfig
     #              ["14:35", "20:50"], 
     #              "./data/").setClock()
 
-    
-
     # ClockManager.new("谷中　猫", 
     #                  "cat", 
     #                  ["18:50", "20:50"], 
@@ -83,25 +81,37 @@ class LocalConfig
     #                 ["11:00", "00:05"], 
     #                 "./data/").setClock()
 
-    # ClockManager.new("#にこるん ニコル", 
-    #                  "nicole", 
-    #                  ["12:05", "00:05"], 
-    #                  "./data/").setClock()
 
-    # ClockManager.new("#ちぃぽぽ", 
-    #                  "chiepopo", 
-    #                  ["13:05", "01:05"], 
-    #                  "./data/").setClock()
 
-    # ClockManager.new("タートルズ フィギュア", 
-    #                  "turtles", 
-    #                  ["14:05", "02:05"], 
-    #                  "./data/").setClock()
+    ClockManager.new("#にこるん ニコル", 
+                     "nicole", 
+                     ["12:05", "00:05"], 
+                     "./data/").setClock()
+
+    ClockManager.new("#ちぃぽぽ", 
+                     "chiepopo", 
+                     ["13:05", "01:05"], 
+                     "./data/").setClock()
+
+    ClockManager.new("タートルズ フィギュア", 
+                     "turtles", 
+                     ["14:05", "02:05"], 
+                     "./data/").setClock()
 
     ClockManager.new("プリクラ", 
                      "puri", 
                      ["15:05", "03:05"], 
                      "./data/").setClock()
+
+
+
+
+
+    # ClockManager.new("ドラえもん　名言", 
+    #              "dora", 
+    #              ["15:05", "03:05"], 
+    #              "./data/").setClock()
+
 
     # =========================================================================== #
 

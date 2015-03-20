@@ -17,7 +17,8 @@ class ExtractedTweets
 	@since_collect_scope_time   # 収集範囲 (スタート)
 	@till_collect_scope_time    # 収集範囲 (エンド)
 	@should_stop_searching    
-	@is_logged_exception      
+	@is_logged_exception
+	@twt_cnts
 	@collect_type         		= ""
 	@search_word							= ""
 
@@ -73,7 +74,8 @@ class ExtractedTweets
 		# ロガーインスタンス生成
 		@l = MLog.new(today, csv_path) 
 		@l.brs(5); @l.mputs("||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||"); @l.br()
-		@l.mputs(" - - - - - - - - - - - - - - - - - - - - - - - - START_EVENT_TIME : " + @start_event_time.to_s)
+		@l.mputs(" - - - - - - - - - - - - - - - - - - - - - - - - ")
+		@l.mputs("イベント発火時刻 : " + @start_event_time.to_s)
 
 		# イニシャライズ
 		since_id 				       = 0
@@ -86,6 +88,12 @@ class ExtractedTweets
 		add_tweet_list	  	 	 = Array.new()
 		@is_logged_exception   = false
 		@should_stop_searching = false
+
+		@twt_cnts = {
+						        outrange_new_twt: 0, 
+						        range_twt:        0, 
+						        outrange_old_twt: 0
+						      }
 
 	
 		@collect_type = getCollectType()
@@ -109,6 +117,7 @@ class ExtractedTweets
 		@l.br()
 		@l.mputs("tag              : " + tag)
 		@l.mputs("name             : " + csv_name)
+		@l.mputs("search_word      : " + @search_word)
 		@l.mputs("- - - - - - - - - - - - - - - - - - - - - - - - ")
 
 
@@ -179,8 +188,10 @@ class ExtractedTweets
 				sleep(sleep_time) # 待機 ( = トラフィック軽減のため)
 			end
 
-			# 検索結果が0件( = ツイート自体無い)かチェックする
-			if cnt >= 3 && error_cnt == 0
+			# 検索結果が0件( = ツイート自体無い)かチェック
+			#  -> エラーがない
+			#  -> （何回か）検索を回している
+			if cnt >= 3 && error_cnt == 0 && checkHasTweet() == false
 				@should_stop_searching = true
 				showExceptionLog(LOG_MSG_NO_TWEET) # ログ表示
 				break
@@ -201,6 +212,13 @@ class ExtractedTweets
 	# CSVファイルへの追加 / 修正の準備
 	#	
 	def prepareForModifingCSV(name, bk_name, list, is_new)
+
+		@l.br()
+		@l.mputs(":::::::::::::: 検索結果 ::::::::::::::")
+		@l.mputs("該当ツイート          : " + @twt_cnts[:range_twt].to_s)
+		@l.mputs("範囲外ツイート（未来） : " + @twt_cnts[:outrange_new_twt].to_s)
+		@l.mputs("範囲外ツイート（過去） ： " + @twt_cnts[:outrange_old_twt].to_s)
+		@l.mputs(":::::::::::::::::::::::::::::::::::::")
 
 		list_cnt_str = list.length.to_s
 
@@ -246,6 +264,19 @@ class ExtractedTweets
 		@l.mputs("CSV書込完了")
 	end
 
+	#
+	# ツイートを検出したかチェック
+	#
+	def checkHasTweet()
+		
+		if @twt_cnts[:outrange_new_twt] == 0 &&
+			 @twt_cnts[:range_twt] == 0 &&
+			 @twt_cnts[:outrange_old_twt] == 0 then
+			return false
+		end
+		return true
+	end
+
 
 	#
 	# 日付の比較
@@ -254,13 +285,16 @@ class ExtractedTweets
 		# 判定
 		if target_time > @till_collect_scope_time
 			@l.mputs("[ check ++++ 除外 (収集範囲より未来のツイート) ]")
+			@twt_cnts[:outrange_new_twt] = @twt_cnts[:outrange_new_twt] + 1
 			return true
 			# return false # [テスト用] 未来のツイートも追加する
 		elsif target_time > @since_collect_scope_time && target_time < @till_collect_scope_time
 			@l.mputs("[ check ++++ 該当 ]")
+			@twt_cnts[:range_twt] = @twt_cnts[:range_twt] + 1
 			return false
 		else
 			@l.mputs("[ check ++++ 除外 (収集範囲より過去のツイート - 処理を停止します) ]")
+			@twt_cnts[:outrange_old_twt] = @twt_cnts[:outrange_old_twt] + 1
 			@should_stop_searching = true
 			return true
 		end
@@ -572,39 +606,47 @@ class ExtractedTweets
 		last_id     = ""
 		bk_num      = 0
 		bk_first_id = ""
+		bk_last_id  = ""
 
 		# さくら用
 		# 一旦改行コードをCRに戻す
 
-		# 「新しいCSVファイル」を開く
-		CSV.open(name , "r:utf-8") { |io|
-			io.read.each.with_index(0) do |tweet, index|
-				if index == 0
-					first_id = tweet[0].sub(/(\=|\")/, "")  # <= hash化しても良かったが 取り急ぎindexで取得する					
-				end
-				last_id = tweet[0].sub(/(\=|\")/, "") 		 # 上書
-				num = index
-			end
-		}
+
 
 		# 「バックアップファイル」を開く
 		flg = false
 		CSV.open(bk_name , "r:utf-8") { |io|
 			io.read.each.with_index(0) do |tweet, index|
+				id = tweet[0].gsub(/\=|\"/, "")
 				if index == 0
-					bk_first_id = tweet[0].sub(/(\=|\")/, "")	
+					bk_first_id = id
 				end
+				bk_last_id = id  # 上書
+				bk_num = index
+			end
+		}
+
+
+		# 「新しいCSVファイル」を開く
+		CSV.open(name , "r:utf-8") { |io|
+			io.read.each.with_index(0) do |tweet, index|
+				id = tweet[0].gsub(/\=|\"/, "")
+				if index == 0
+					first_id = id  # <= hash化しても良かったが 取り急ぎindexで取得する					
+				end
+				last_id = id  # 上書
 
 				# 確認
 				# 01: 「バックアップファイル」の最終行は「新しいCSVファイル」の方にも存在するか		
-				if flg == false && last_id == tweet[0].sub(/(\=|\")/, "")
+				if flg == false && bk_last_id == id
 					flg = true
 					flg_cnt = flg_cnt + 1
 					@l.mputs(" ---> check 01: ok")
 				end
-				bk_num = index
+				num = index
 			end
-		}		
+		}
+
 
 		# 確認
 		# 02: 先頭のidは同一か 
