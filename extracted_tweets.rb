@@ -361,8 +361,6 @@ class ExtractedTweets
 		if h[:entities].has_key?(:media)
 			# 更に、画像のURL(2つ)が存在しているかチェック
 			if h[:entities][:media][0][:media_url_https].to_s.length != 0 || h[:entities][:media][0][:media_url].to_s.length != 0
-			# if h[:entities][:media][0][:media_url_https].to_s.length != 0 && h[:entities][:media][0][:media_url].to_s.length != 0
-				# @l.mputs("media_url_https : " + h[:entities][:media][0][:media_url_https].to_s)
 				return 1
 			end
 		end

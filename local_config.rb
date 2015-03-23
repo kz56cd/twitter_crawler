@@ -106,7 +106,6 @@ class LocalConfig
 
 
 
-
     # ClockManager.new("ドラえもん　名言", 
     #              "dora", 
     #              ["15:05", "03:05"], 

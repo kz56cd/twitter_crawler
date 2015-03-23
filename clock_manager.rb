@@ -13,7 +13,7 @@ class ClockManager
 
   # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
   TWEET_GET_NUM = 100    # 一度の検索で取得するツイート数
-  SLEEP_TIME    = 30     # 検索後の待機時間 (秒)
+  SLEEP_TIME    = 10     # 検索後の待機時間 (秒)
   # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
   def initialize(key , tag, startTimeList, csv_path)
