@@ -85,22 +85,26 @@ class LocalConfig
 
     ClockManager.new("#にこるん ニコル", 
                      "nicole", 
-                     ["12:05", "00:05"], 
+                     # ["12:05", "00:05"], 
+                     ["10:50", "00:05"],                      
                      "./data/").setClock()
 
     ClockManager.new("#ちぃぽぽ", 
                      "chiepopo", 
-                     ["13:05", "01:05"], 
+                     # ["13:05", "01:05"],
+                     ["11:30", "00:05"], 
                      "./data/").setClock()
 
     ClockManager.new("タートルズ フィギュア", 
                      "turtles", 
-                     ["14:05", "02:05"], 
+                     # ["14:05", "02:05"],
+                     ["12:30", "00:05"], 
                      "./data/").setClock()
 
     ClockManager.new("プリクラ", 
                      "puri", 
-                     ["15:05", "03:05"], 
+                     # ["15:05", "03:05"],
+                     ["13:30", "00:05"], 
                      "./data/").setClock()
 
 

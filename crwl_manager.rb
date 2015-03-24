@@ -29,8 +29,8 @@ end
 #
 def doStart()
   puts ">>>> do start <<<<"
-  v = `nohup clockwork start_crawling.rb &` # start_crawling.rbをclockworkでバックグラウンド実行
-  puts v
+  # （エスケープさせるため）Kernel#exec でshell実行
+  exec("nohup clockwork start_crawling.rb \&") # 「start_crawling」ジョブの開始
 end
 
 
