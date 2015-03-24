@@ -3,6 +3,10 @@ CMD_OPTION_STOP    = "stop"
 CMD_OPTION_RESTART = "restart"
 CMD_OPTION_LIST    = "list"
 
+# |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+RUN_FILE_NAME      = "start_crawling.rb"
+# |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
 #
 # 入力されたオプションの評価
 #
@@ -29,8 +33,8 @@ end
 #
 def doStart()
   puts ">>>> do start <<<<"
-  # （エスケープさせるため）Kernel#exec でshell実行
-  exec("nohup clockwork start_crawling.rb \&") # 「start_crawling」ジョブの開始
+  shell = "nohup clockwork " + RUN_FILE_NAME + " \&"
+  exec(shell) # 「start_crawling」ジョブの開始
 end
 
 
@@ -39,7 +43,8 @@ end
 #
 def doStop()
   puts ">>>> do stop <<<<"
-  puts `pkill -f start_crawling` # 「start_crawling」ジョブ全て削除
+  shell = "pkill -f " + RUN_FILE_NAME
+  exec(shell)  # 「start_crawling」ジョブ全て削除
 end
 
 
@@ -57,7 +62,9 @@ end
 #
 def doList()
   puts ">>>> do list <<<<"
-  puts `pgrep -fl start_crawling`
+  shell = "pgrep -fl " + RUN_FILE_NAME
+  exec(shell)
+  # puts `pgrep -fl start_crawling`
 end
 
 
