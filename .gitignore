@@ -1,0 +1,11 @@
+# 生成したcsvファイル郡は無視
+/data/
+/data/__old/
+/data/log/
+/test/
+
+# keys
+twitter_setting.rb
+
+# logfile (when use background)
+nohup.out
