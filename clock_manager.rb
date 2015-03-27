@@ -41,7 +41,7 @@ class ClockManager
     # ----------------------------------------------- #
     # テスト用（インターバルによるジョブ発火）
     #
-
+    
     # every(60.seconds, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
     # every(1.day, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
 
