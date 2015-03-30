@@ -4,7 +4,8 @@ CMD_OPTION_RESTART = "restart"
 CMD_OPTION_LIST    = "list"
 
 # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-RUN_FILE_NAME      = "start_crawling.rb"
+# RUN_FILE_NAME      = "start_crawling.rb"
+RUN_FILE_NAME      = "/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/start_crawling.rb"
 # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 #

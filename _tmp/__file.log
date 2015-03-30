@@ -1,6 +1,5 @@
-I, [2015-03-30T19:52:24.861118 #63572]  INFO -- : Starting clock for 1 events: [ extracted.job ]
-I, [2015-03-30T19:52:24.861208 #63572]  INFO -- : Triggering 'extracted.job'
-abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data/
+I, [2015-03-30T18:00:02.658043 #89770]  INFO -- : Starting clock for 2 events: [ extracted.job extracted.job ]
+I, [2015-03-30T18:02:00.002111 #89770]  INFO -- : Triggering 'extracted.job'
 
 
 
@@ -9,29 +8,28 @@ abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02
 ||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
 
  - - - - - - - - - - - - - - - - - - - - - - - - 
-イベント発火時刻 : 2015-03-30 19:52:24 +0900
+イベント発火時刻 : 2015-03-30 18:02:00 +0900
 ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
 checkShouldAddCSVfile start
 
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
 
-/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data/tweet_turtles_20150330_20150412.csvに書き込みます...
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
 
-バックアップファイル作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data/bk_tweet_turtles_20150330_20150412.csv
+作成 : ./data/tweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : ./data/bk_tweet_turtles_20150330_20150412.csv
 
 tag              : turtles
-name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data/tweet_turtles_20150330_20150412.csv
+name             : ./data/tweet_turtles_20150330_20150412.csv
 search_word      : タートルズ ピザ
 - - - - - - - - - - - - - - - - - - - - - - - - 
 検索開始
-582487375990779904
-pakutter2014
-pakkuman
-昔、姉ちゃんが「いいよいいよ・・・」ってメッチャ寝言で遠慮してたから、なんの夢見てたのか聞いたら、「忍者タートルズにピザをプレゼントされて、申し訳なくて遠慮してた」って寝ぼけながら話してくれたのはポイント高かったですね。
-image : 0
-2015-03-30 19:19:47 +0900
-https://twitter.com/pakutter2014
-==============================================
-[ check ++++ 除外 (収集範囲より未来のツイート) ]
 582397796008861696
 warau_kessaku
 笑うしかない傑作選
@@ -830,23 +828,19 @@ https://twitter.com/hanatodance
 
 :::::::::::::: 検索結果 ::::::::::::::
 該当ツイート          : 2
-範囲外ツイート（未来） : 2
+範囲外ツイート（未来） : 1
 範囲外ツイート（過去） ： 82
 :::::::::::::::::::::::::::::::::::::
 
 ++++++++++++++ CSVファイル調整 : 開始 ++++++++++++++
 追加予定のリスト数 : 2
-CSV書込開始 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data/tweet_turtles_20150330_20150412.csv
+CSV書込開始 : ./data/tweet_turtles_20150330_20150412.csv
 行数        : 2
 CSV書込完了
-改行コード変換完了 (LF) : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data/tweet_turtles_20150330_20150412.csv
+改行コード変換完了 (LF) : ./data/tweet_turtles_20150330_20150412.csv
 バックアップファイルを削除してよいかチェック。。
- ---> check 01: ok
- ---> check 02: ok
- ---> check 03: ok
-flg_cnt : 3
-バックアップファイルを削除 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data/bk_tweet_turtles_20150330_20150412.csv
-改行コード変換完了 (CRLF) : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data/tweet_turtles_20150330_20150412.csv
+バックアップファイル（空）を削除 : ./data/bk_tweet_turtles_20150330_20150412.csv
+改行コード変換完了 (CRLF) : ./data/tweet_turtles_20150330_20150412.csv
 ++++++++++++++ CSVファイル調整 : 完了 ++++++++++++++
 
 ||||||||||||||||||| func (get_extracted_tweet_all) end |||||||||||||||||||

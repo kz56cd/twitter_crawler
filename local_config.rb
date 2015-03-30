@@ -83,33 +83,42 @@ class LocalConfig
 
 
 
-    ClockManager.new("#にこるん ニコル", 
-                     "nicole", 
-                     ["12:05", "00:05"], 
-                     "./data/").setClock()
 
-    ClockManager.new("#ちぃぽぽ", 
-                     "chiepopo", 
-                     ["13:05", "01:05"],
-                     "./data/").setClock()
+    
+    # + + + + + + + + + + + + + + + + + + + + + + + + + + 
+    # ここで、共有サーバにある設定ファイルを読み込みたい
+    # + + + + + + + + + + + + + + + + + + + + + + + + + + 
 
-    ClockManager.new("タートルズ フィギュア", 
+
+
+
+    # ClockManager.new("#にこるん ニコル", 
+    #                  "nicole", 
+    #                  ["12:05", "00:05"], 
+    #                  "./data/").setClock()
+
+    # ClockManager.new("#ちぃぽぽ", 
+    #                  "chiepopo", 
+    #                  ["13:05", "01:05"],
+    #                  "./data/").setClock()
+
+    ClockManager.new("タートルズ ピザ", 
                      "turtles", 
-                     ["14:05", "02:05"],
+                     ["18:02", "02:00"],
                      "./data/").setClock()
 
-    ClockManager.new("プリクラ", 
-                     "puri", 
-                     ["15:05", "03:05"],
-                     "./data/").setClock()
+    # ClockManager.new("プリクラ", 
+    #                  "puri", 
+    #                  ["15:05", "03:05"],
+    #                  "./data/").setClock()
 
 
 
 
-    ClockManager.new("ドラえもん　名言", 
-                 "dora", 
-                 ["17:35", "03:05"], 
-                 "./data/").setClock()
+    # ClockManager.new("ドラえもん　名言", 
+    #              "dora", 
+    #              ["17:35", "03:05"], 
+    #              "./data/").setClock()
 
 
     # =========================================================================== #
