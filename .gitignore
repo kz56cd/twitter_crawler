@@ -10,3 +10,6 @@ twitter_setting.rb
 
 # logfile (when use background)
 nohup.out
+
+# logfile (when use whenever)
+file.log
