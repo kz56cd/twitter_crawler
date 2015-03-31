@@ -31,11 +31,11 @@ set :output, Whenever.path + "/file.log"
 # set :output, "file.log"
 
 # every 10.minutes do
-# every 1.minutes do
+every 25.minutes do
 
 # every 1.day, :at => '5:15 pm' do
 # every 1.day, :at => '10:10pm' do
-every 1.day do
+# every 1.day do
 
 
 # every '18 22 * * *' do
@@ -47,10 +47,9 @@ every 1.day do
   # command "ruby " + Whenever.path + "test.rb"
   command "export PATH='$HOME/.rbenv/bin:$PATH'"
 
-  # command "ruby " + PROJECT_HOME_PATH + "crwl_manager.rb stop"
-  # command "ruby " + PROJECT_HOME_PATH + "crwl_manager.rb start"
-  command "ruby " + Whenever.path + "/crwl_manager.rb stop"
-  command "ruby " + Whenever.path + "/crwl_manager.rb start"
+  # command "ruby " + Whenever.path + "/crwl_manager.rb stop"
+  # command "ruby " + Whenever.path + "/crwl_manager.rb start"
+  command "ruby " + Whenever.path + "/crwl_manager.rb check" # リスタートすべきか確認する
 
   # puts "path : " + Whenever.path
 end

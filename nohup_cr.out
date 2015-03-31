@@ -1,0 +1,16 @@
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler/res/conf/conf.csv
++ + + clock + + +
+タートルズ ピザ
+turtles
+21:51
+2:00
+./res/data/
++ + + + + + + + +
++ + + clock + + +
+#ドラえもん 数学 事務所
+dora
+09:58
+3:00
+./res/data/
++ + + + + + + + +
+I, [2015-03-31T10:14:02.477178 #9422]  INFO -- : Starting clock for 4 events: [ extracted.job extracted.job extracted.job extracted.job ]
