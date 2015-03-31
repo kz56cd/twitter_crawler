@@ -1,4 +1,5 @@
 # 生成したcsvファイル郡は無視
+/ref/data/
 /data/
 /data/__old/
 /data/log/
