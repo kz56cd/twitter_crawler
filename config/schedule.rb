@@ -30,10 +30,15 @@
 set :output, Whenever.path + "/file.log"
 # set :output, "file.log"
 
-every 10.minutes do
+# every 10.minutes do
 # every 1.minutes do
 
 # every 1.day, :at => '5:15 pm' do
+# every 1.day, :at => '10:10pm' do
+every 1.day do
+
+
+# every '18 22 * * *' do
 
   # command "echo 'one' && echo 'two'"
   # command "nohup ruby " + PROJECT_HOME_PATH + "test.rb"
