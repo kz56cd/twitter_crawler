@@ -86,7 +86,7 @@ def doCheckforRestart()
   puts "現在時刻 : " + t
 
   # 特定の時間（1日一回）のみコマンド発火させる
-  if t == "1425" 
+  if t == "1528" 
     puts "クローラ設定再読込 -> 再起動します。。。"
     # doRestart()
   else
