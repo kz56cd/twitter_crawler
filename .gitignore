@@ -1,4 +1,5 @@
 # 生成したcsvファイル郡は無視
+/ref/data/
 /data/
 /data/__old/
 /data/log/
@@ -9,3 +10,6 @@ twitter_setting.rb
 
 # logfile (when use background)
 nohup.out
+
+# logfile (when use whenever)
+file.log

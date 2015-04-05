@@ -551,6 +551,19 @@ class ExtractedTweets
     mod_name = name.sub(path , "")
     mod_name = path + BACKUP_FILENAME_FORMAT + mod_name
 
+
+
+
+
+    # @l.mputs("絶対パス" + File.expand_path(mod_name))
+    # @l.mputs("sleepします")
+    # sleep(9999)
+
+
+
+
+
+
     # 元ファイルが空でない場合
     if is_new == false 
       # コピー元のデータを取得

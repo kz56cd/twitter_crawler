@@ -1,0 +1,442 @@
+I, [2015-03-30T18:57:02.235830 #6710]  INFO -- : Starting clock for 1 events: [ extracted.job ]
+I, [2015-03-30T18:57:02.235905 #6710]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/data
+I, [2015-03-30T19:11:01.001178 #24865]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb/data
+I, [2015-03-30T19:18:02.261260 #32034]  INFO -- : Starting clock for 1 events: [ extracted.job ]
+I, [2015-03-30T19:18:02.261352 #32034]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb/data
+I, [2015-03-30T19:22:02.149171 #38124]  INFO -- : Starting clock for 1 events: [ extracted.job ]
+I, [2015-03-30T19:22:02.149260 #38124]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/data
+I, [2015-03-30T19:26:01.851155 #44211]  INFO -- : Starting clock for 1 events: [ extracted.job ]
+I, [2015-03-30T19:26:01.851322 #44211]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:26:11.001219 #44211]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:26:21.002126 #44211]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:26:31.001793 #44211]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:26:41.001368 #44211]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:26:51.002245 #44211]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:27:01.002143 #44211]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:29:02.615112 #48298]  INFO -- : Starting clock for 1 events: [ extracted.job ]
+I, [2015-03-30T19:29:02.615185 #48298]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:29:12.002177 #48298]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:29:22.002065 #48298]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:29:32.002198 #48298]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:29:42.002217 #48298]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:29:52.002203 #48298]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:34:02.530868 #55114]  INFO -- : Starting clock for 1 events: [ extracted.job ]
+I, [2015-03-30T19:34:02.530944 #55114]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:34:12.002188 #55114]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:34:22.002142 #55114]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:34:32.002159 #55114]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:34:42.002116 #55114]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:34:52.002124 #55114]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:35:02.827486 #56506]  INFO -- : Starting clock for 1 events: [ extracted.job ]
+I, [2015-03-30T19:35:02.827599 #56506]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:35:12.002149 #56506]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:35:22.002173 #56506]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:35:32.002178 #56506]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:35:42.002174 #56506]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:35:52.001312 #56506]  INFO -- : Triggering 'extracted.job'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+I, [2015-03-30T19:36:02.514435 #57876]  INFO -- : Starting clock for 1 events: [ extracted.job ]
+I, [2015-03-30T19:36:02.514523 #57876]  INFO -- : Triggering 'extracted.job'
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+
+
+
+
+
+||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
+
+ - - - - - - - - - - - - - - - - - - - - - - - - 
+イベント発火時刻 : 2015-03-30 19:36:02 +0900
+ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
+checkShouldAddCSVfile start
+
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
+
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
+
+作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/databk_tweet_turtles_20150330_20150412.csv
+
+tag              : turtles
+name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+search_word      : タートルズ ピザ
+- - - - - - - - - - - - - - - - - - - - - - - - 
+検索開始
+I, [2015-03-30T19:36:12.002219 #57876]  INFO -- : Triggering 'extracted.job'
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+
+
+
+
+
+||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
+
+ - - - - - - - - - - - - - - - - - - - - - - - - 
+イベント発火時刻 : 2015-03-30 19:36:12 +0900
+ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
+checkShouldAddCSVfile start
+
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
+
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
+
+作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/databk_tweet_turtles_20150330_20150412.csv
+
+tag              : turtles
+name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+search_word      : タートルズ ピザ
+- - - - - - - - - - - - - - - - - - - - - - - - 
+検索開始
+E, [2015-03-30T19:36:12.622799 #57876] ERROR -- : execution expired (Twitter::Error)
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:37:in `rescue in perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:32:in `perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/search_results.rb:27:in `initialize'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `new'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `search'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/extracted_tweets.rb:153:in `getTweetAll'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb:36:in `block in setClock'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `call'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `execute'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:37:in `block in run'
+I, [2015-03-30T19:36:22.002195 #57876]  INFO -- : Triggering 'extracted.job'
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+
+
+
+
+
+||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
+
+ - - - - - - - - - - - - - - - - - - - - - - - - 
+イベント発火時刻 : 2015-03-30 19:36:22 +0900
+ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
+checkShouldAddCSVfile start
+
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
+
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
+
+作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/databk_tweet_turtles_20150330_20150412.csv
+
+tag              : turtles
+name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+search_word      : タートルズ ピザ
+- - - - - - - - - - - - - - - - - - - - - - - - 
+検索開始
+E, [2015-03-30T19:36:22.024402 #57876] ERROR -- : execution expired (Twitter::Error)
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:37:in `rescue in perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:32:in `perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/search_results.rb:27:in `initialize'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `new'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `search'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/extracted_tweets.rb:153:in `getTweetAll'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb:36:in `block in setClock'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `call'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `execute'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:37:in `block in run'
+I, [2015-03-30T19:36:32.002185 #57876]  INFO -- : Triggering 'extracted.job'
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+
+
+
+
+
+||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
+
+ - - - - - - - - - - - - - - - - - - - - - - - - 
+イベント発火時刻 : 2015-03-30 19:36:32 +0900
+ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
+checkShouldAddCSVfile start
+
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
+
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
+
+作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/databk_tweet_turtles_20150330_20150412.csv
+
+tag              : turtles
+name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+search_word      : タートルズ ピザ
+- - - - - - - - - - - - - - - - - - - - - - - - 
+検索開始
+E, [2015-03-30T19:36:32.023434 #57876] ERROR -- : execution expired (Twitter::Error)
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:37:in `rescue in perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:32:in `perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/search_results.rb:27:in `initialize'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `new'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `search'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/extracted_tweets.rb:153:in `getTweetAll'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb:36:in `block in setClock'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `call'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `execute'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:37:in `block in run'
+I, [2015-03-30T19:36:42.001667 #57876]  INFO -- : Triggering 'extracted.job'
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+
+
+
+
+
+||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
+
+ - - - - - - - - - - - - - - - - - - - - - - - - 
+イベント発火時刻 : 2015-03-30 19:36:42 +0900
+ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
+checkShouldAddCSVfile start
+
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
+
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
+
+作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/databk_tweet_turtles_20150330_20150412.csv
+
+tag              : turtles
+name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+search_word      : タートルズ ピザ
+- - - - - - - - - - - - - - - - - - - - - - - - 
+検索開始
+E, [2015-03-30T19:36:42.024491 #57876] ERROR -- : execution expired (Twitter::Error)
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:37:in `rescue in perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:32:in `perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/search_results.rb:27:in `initialize'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `new'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `search'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/extracted_tweets.rb:153:in `getTweetAll'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb:36:in `block in setClock'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `call'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `execute'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:37:in `block in run'
+I, [2015-03-30T19:36:52.002223 #57876]  INFO -- : Triggering 'extracted.job'
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+
+
+
+
+
+||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
+
+ - - - - - - - - - - - - - - - - - - - - - - - - 
+イベント発火時刻 : 2015-03-30 19:36:52 +0900
+ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
+checkShouldAddCSVfile start
+
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
+
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
+
+作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/databk_tweet_turtles_20150330_20150412.csv
+
+tag              : turtles
+name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+search_word      : タートルズ ピザ
+- - - - - - - - - - - - - - - - - - - - - - - - 
+検索開始
+E, [2015-03-30T19:36:52.024479 #57876] ERROR -- : execution expired (Twitter::Error)
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:37:in `rescue in perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:32:in `perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/search_results.rb:27:in `initialize'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `new'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `search'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/extracted_tweets.rb:153:in `getTweetAll'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb:36:in `block in setClock'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `call'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `execute'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:37:in `block in run'
+I, [2015-03-30T19:37:02.002180 #57876]  INFO -- : Triggering 'extracted.job'
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+
+
+
+
+
+||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
+
+ - - - - - - - - - - - - - - - - - - - - - - - - 
+イベント発火時刻 : 2015-03-30 19:37:02 +0900
+ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
+checkShouldAddCSVfile start
+
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
+
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
+
+作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/databk_tweet_turtles_20150330_20150412.csv
+
+tag              : turtles
+name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+search_word      : タートルズ ピザ
+- - - - - - - - - - - - - - - - - - - - - - - - 
+検索開始
+E, [2015-03-30T19:37:02.023872 #57876] ERROR -- : execution expired (Twitter::Error)
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:37:in `rescue in perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:32:in `perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/search_results.rb:27:in `initialize'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `new'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `search'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/extracted_tweets.rb:153:in `getTweetAll'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb:36:in `block in setClock'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `call'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `execute'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:37:in `block in run'
+I, [2015-03-30T19:37:12.002243 #57876]  INFO -- : Triggering 'extracted.job'
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+
+
+
+
+
+||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
+
+ - - - - - - - - - - - - - - - - - - - - - - - - 
+イベント発火時刻 : 2015-03-30 19:37:12 +0900
+ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
+checkShouldAddCSVfile start
+
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
+
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
+
+作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/databk_tweet_turtles_20150330_20150412.csv
+
+tag              : turtles
+name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+search_word      : タートルズ ピザ
+- - - - - - - - - - - - - - - - - - - - - - - - 
+検索開始
+E, [2015-03-30T19:37:12.025101 #57876] ERROR -- : execution expired (Twitter::Error)
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:37:in `rescue in perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:32:in `perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/search_results.rb:27:in `initialize'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `new'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `search'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/extracted_tweets.rb:153:in `getTweetAll'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb:36:in `block in setClock'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `call'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `execute'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:37:in `block in run'
+I, [2015-03-30T19:37:22.002226 #57876]  INFO -- : Triggering 'extracted.job'
+abs_rootpath : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/data
+
+
+
+
+
+||||||||||||||||||| func (get_extracted_tweet_all) start |||||||||||||||||||
+
+ - - - - - - - - - - - - - - - - - - - - - - - - 
+イベント発火時刻 : 2015-03-30 19:37:22 +0900
+ツイート収集範囲 : 2015-03-30 00:00:00 +0900 ~ 2015-03-30 12:00:00 +0900
+checkShouldAddCSVfile start
+
+ + + + + + + + + + + + + + + + + + + 
+新しいファイルを作成します...
+
+今日の曜日 : 1
+day_diff : 0
+収集範囲(スタート) : 20150330
+収集範囲(エンド)   : 20150412
+
+作成 : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+ + + + + + + + + + + + + + + + + + +
+
+バックアップファイル作成 （空） : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/databk_tweet_turtles_20150330_20150412.csv
+
+tag              : turtles
+name             : /Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/datatweet_turtles_20150330_20150412.csv
+search_word      : タートルズ ピザ
+- - - - - - - - - - - - - - - - - - - - - - - - 
+検索開始
+E, [2015-03-30T19:37:22.025611 #57876] ERROR -- : execution expired (Twitter::Error)
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:37:in `rescue in perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/request.rb:32:in `perform'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/search_results.rb:27:in `initialize'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `new'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/twitter-5.14.0/lib/twitter/rest/search.rb:31:in `search'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/extracted_tweets.rb:153:in `getTweetAll'
+/Users/0FRZ14015/Dropbox/_sample/ruby/pictlink_twitter_crawler_02/clock_manager.rb:36:in `block in setClock'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `call'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:54:in `execute'
+/Users/0FRZ14015/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/clockwork-1.1.0/lib/clockwork/event.rb:37:in `block in run'

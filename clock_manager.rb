@@ -12,8 +12,8 @@ class ClockManager
   @extracted_tweets
 
   # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-  TWEET_GET_NUM = 100    # 一度の検索で取得するツイート数
-  SLEEP_TIME    = 10     # 検索後の待機時間 (秒)
+  # TWEET_GET_NUM = 100    # 一度の検索で取得するツイート数
+  # SLEEP_TIME    = 10     # 検索後の待機時間 (秒)
   # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
   def initialize(key , tag, startTimeList, csv_path)
@@ -28,7 +28,23 @@ class ClockManager
     handler do |job|
       case job
         when "extracted.job"
-          @extracted_tweets.getTweetAll(@key, TWEET_GET_NUM, SLEEP_TIME, @tag, @csv_path) # ツイート収集開始
+          
+          abs_rootpath = File.expand_path("." + @csv_path, __FILE__) + "/"
+          puts "abs_rootpath : " + abs_rootpath
+
+          # @extracted_tweets.getTweetAll(@key, TWEET_GET_NUM, SLEEP_TIME, @tag, @csv_path) # ツイート収集開始
+          # @extracted_tweets.getTweetAll(@key, TWEET_GET_NUM, SLEEP_TIME, @tag, abs_rootpath) # ツイート収集開始
+          @extracted_tweets.getTweetAll(@key, 100, 10, @tag, abs_rootpath) # ツイート収集開始
+
+          # test = File.expand_path(@csv_path)
+          # test = File.expand_path(@csv_path, __FILE__)
+
+          # root = File.expand_path(__FILE__)
+          # root.sub!($0, "")
+          # path = File.expand_path(@csv_path, root)
+
+
+          
       end
     end
 
@@ -42,7 +58,7 @@ class ClockManager
     # テスト用（インターバルによるジョブ発火）
     #
     
-    # every(60.seconds, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
+    # every(10.seconds, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
     # every(1.day, 'extracted.job', :thread => true) # ジョブの登録 (マルチスレッド対応)
 
 

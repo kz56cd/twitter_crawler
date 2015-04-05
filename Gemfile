@@ -5,4 +5,5 @@ gem "thread_safe", "~> 0.3.5"
 gem "activesupport"
 gem "twitter"
 gem "clockwork"
+gem "whenever", :require => false
 # gem "csv"
